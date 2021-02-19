@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="AccountHeaderView" id="oUc-c3-Mbe" customClass="AccountHeaderView" customModule="Fuela" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account screen design" translatesAutoresizingMaskIntoConstraints="NO" id="0Zy-wI-g5Q">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="snW-qc-yox"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lib-Vf-0Vy">
+                    <rect key="frame" x="16" y="131" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="FDz-WN-sC3"/>
+                        <constraint firstAttribute="height" constant="60" id="jEw-r2-bWV"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sC7-fB-UHP">
+                    <rect key="frame" x="16" y="131" width="60" height="60"/>
+                    <connections>
+                        <action selector="profileButtonTapped:" destination="oUc-c3-Mbe" eventType="touchUpInside" id="khe-Wo-Xxq"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vishal Khurana" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4o-zX-gZT">
+                    <rect key="frame" x="88" y="139" width="131" height="23"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v.khurana@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBV-aL-br7">
+                    <rect key="frame" x="88" y="162" width="141.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="sC7-fB-UHP" firstAttribute="bottom" secondItem="lib-Vf-0Vy" secondAttribute="bottom" id="0eX-3Y-We1"/>
+                <constraint firstItem="yBV-aL-br7" firstAttribute="top" secondItem="E4o-zX-gZT" secondAttribute="bottom" id="1n5-Cm-b2A"/>
+                <constraint firstItem="E4o-zX-gZT" firstAttribute="leading" secondItem="lib-Vf-0Vy" secondAttribute="trailing" constant="12" id="EVh-HT-Ez3"/>
+                <constraint firstItem="yBV-aL-br7" firstAttribute="leading" secondItem="lib-Vf-0Vy" secondAttribute="trailing" constant="12" id="FwY-nA-nk9"/>
+                <constraint firstItem="E4o-zX-gZT" firstAttribute="top" secondItem="lib-Vf-0Vy" secondAttribute="top" constant="8" id="KXs-RL-cak"/>
+                <constraint firstAttribute="bottom" secondItem="0Zy-wI-g5Q" secondAttribute="bottom" id="Mk1-x1-eN6"/>
+                <constraint firstItem="0Zy-wI-g5Q" firstAttribute="top" secondItem="oUc-c3-Mbe" secondAttribute="top" id="TA0-4j-ZeR"/>
+                <constraint firstItem="sC7-fB-UHP" firstAttribute="trailing" secondItem="lib-Vf-0Vy" secondAttribute="trailing" id="YL9-c8-1ZM"/>
+                <constraint firstItem="sC7-fB-UHP" firstAttribute="top" secondItem="lib-Vf-0Vy" secondAttribute="top" id="Zfo-sk-FMY"/>
+                <constraint firstAttribute="bottom" secondItem="lib-Vf-0Vy" secondAttribute="bottom" constant="16" id="cp1-VA-G3v"/>
+                <constraint firstItem="0Zy-wI-g5Q" firstAttribute="leading" secondItem="oUc-c3-Mbe" secondAttribute="leading" id="d7R-QS-dLJ"/>
+                <constraint firstItem="lib-Vf-0Vy" firstAttribute="leading" secondItem="oUc-c3-Mbe" secondAttribute="leading" constant="16" id="gTe-CD-emQ"/>
+                <constraint firstItem="sC7-fB-UHP" firstAttribute="leading" secondItem="lib-Vf-0Vy" secondAttribute="leading" id="l3u-7c-BLE"/>
+                <constraint firstAttribute="trailing" secondItem="0Zy-wI-g5Q" secondAttribute="trailing" id="xO3-pT-sOq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="S7Y-VA-pvD"/>
+            <connections>
+                <outlet property="userEmailLabel" destination="yBV-aL-br7" id="BmF-Gd-o7I"/>
+                <outlet property="userImageView" destination="lib-Vf-0Vy" id="eL6-f4-Ryn"/>
+                <outlet property="userNameLabel" destination="E4o-zX-gZT" id="Evk-4D-2p0"/>
+            </connections>
+            <point key="canvasLocation" x="240.57971014492756" y="-124.21875"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Account screen design" width="375" height="170"/>
+        <image name="placeholder" width="512" height="512"/>
+    </resources>
+</document>

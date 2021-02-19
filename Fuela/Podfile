@@ -1,0 +1,19 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Fuela' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  
+   pod 'Alamofire', '~> 4.5'
+   pod 'SDWebImage', '~> 4.4.6'
+   pod 'IQKeyboardManagerSwift'
+   pod 'TransitionButton'
+   pod 'CRNotifications'
+   pod 'FloatingPanel'
+   pod "GSKStretchyHeaderView"
+   pod 'SKCountryPicker'
+
+  # Pods for Fuela
+
+end

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Circular Std Medium.ttf">
+            <string>CircularStd-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="PaidSuccessView" id="iN0-l3-epB" customClass="PaidSuccessView" customModule="Fuela" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyQ-mr-S3r">
+                    <rect key="frame" x="82" y="358" width="250" height="180"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account verification" translatesAutoresizingMaskIntoConstraints="NO" id="fvZ-Pv-OM8">
+                            <rect key="frame" x="75" y="0.0" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="JXv-Xu-qKY"/>
+                                <constraint firstAttribute="height" constant="100" id="X0J-uY-UrL"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paid Successfully" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qc6-M7-4Dm">
+                            <rect key="frame" x="46" y="116" width="158.5" height="25.5"/>
+                            <fontDescription key="fontDescription" name="CircularStd-Medium" family="Circular Std" pointSize="20"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="Fx9-dg-jRz"/>
+                        <constraint firstItem="fvZ-Pv-OM8" firstAttribute="centerX" secondItem="tyQ-mr-S3r" secondAttribute="centerX" id="NAX-gz-T3f"/>
+                        <constraint firstItem="fvZ-Pv-OM8" firstAttribute="centerY" secondItem="tyQ-mr-S3r" secondAttribute="centerY" constant="-40" id="VIn-Qv-wg1"/>
+                        <constraint firstItem="Qc6-M7-4Dm" firstAttribute="top" secondItem="fvZ-Pv-OM8" secondAttribute="bottom" constant="16" id="Wma-fK-gzj"/>
+                        <constraint firstItem="Qc6-M7-4Dm" firstAttribute="centerX" secondItem="tyQ-mr-S3r" secondAttribute="centerX" id="X6W-xP-PDU"/>
+                        <constraint firstAttribute="width" constant="250" id="pkB-At-I19"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="tyQ-mr-S3r" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hHq-52-qP0"/>
+                <constraint firstItem="tyQ-mr-S3r" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xk3-2d-Y20"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="contentView" destination="tyQ-mr-S3r" id="ugA-eF-JDb"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="120.53571428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Account verification" width="119" height="119"/>
+    </resources>
+</document>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Circular Std Book.ttf">
+            <string>CircularStd-Book</string>
+        </array>
+        <array key="CircularStd-Bold.otf">
+            <string>CircularStd-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="RewardHeaderView" id="imo-Im-B0W" customClass="RewardHeaderView" customModule="Fuela" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account screen design" translatesAutoresizingMaskIntoConstraints="NO" id="RBW-PJ-UVM">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="230" id="2fS-fa-kNt"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOf-2K-leI">
+                    <rect key="frame" x="20" y="154" width="11" height="22"/>
+                    <fontDescription key="fontDescription" name="CircularStd-Book" family="Circular Std" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="606" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vk1-3c-KVn">
+                    <rect key="frame" x="43" y="146" width="54" height="38"/>
+                    <fontDescription key="fontDescription" name="CircularStd-Bold" family="Circular Std" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Rewards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bq5-ku-HQ2">
+                    <rect key="frame" x="20" y="192" width="107.5" height="22"/>
+                    <fontDescription key="fontDescription" name="CircularStd-Book" family="Circular Std" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="EOf-2K-leI" firstAttribute="leading" secondItem="BEw-Fg-KyF" secondAttribute="leading" constant="20" id="A4H-9e-kY3"/>
+                <constraint firstItem="RBW-PJ-UVM" firstAttribute="trailing" secondItem="BEw-Fg-KyF" secondAttribute="trailing" id="KQE-Fj-Naz"/>
+                <constraint firstItem="RBW-PJ-UVM" firstAttribute="top" secondItem="imo-Im-B0W" secondAttribute="top" id="R4W-Ed-cNK"/>
+                <constraint firstItem="RBW-PJ-UVM" firstAttribute="leading" secondItem="BEw-Fg-KyF" secondAttribute="leading" id="Tfs-Id-ooX"/>
+                <constraint firstItem="BEw-Fg-KyF" firstAttribute="bottom" secondItem="Bq5-ku-HQ2" secondAttribute="bottom" constant="16" id="Xoh-iC-i7u"/>
+                <constraint firstItem="vk1-3c-KVn" firstAttribute="centerY" secondItem="EOf-2K-leI" secondAttribute="centerY" id="jRe-6G-YkR"/>
+                <constraint firstItem="vk1-3c-KVn" firstAttribute="leading" secondItem="EOf-2K-leI" secondAttribute="trailing" constant="12" id="nXf-Oc-bjD"/>
+                <constraint firstItem="Bq5-ku-HQ2" firstAttribute="top" secondItem="vk1-3c-KVn" secondAttribute="bottom" constant="8" id="oSw-jc-TPf"/>
+                <constraint firstItem="Bq5-ku-HQ2" firstAttribute="top" secondItem="vk1-3c-KVn" secondAttribute="bottom" constant="8" id="p5v-ol-Qlh"/>
+                <constraint firstItem="Bq5-ku-HQ2" firstAttribute="leading" secondItem="BEw-Fg-KyF" secondAttribute="leading" constant="20" id="pFX-vJ-ugY"/>
+                <constraint firstItem="RBW-PJ-UVM" firstAttribute="bottom" secondItem="BEw-Fg-KyF" secondAttribute="bottom" id="pgW-bj-kIP"/>
+                <constraint firstItem="RBW-PJ-UVM" firstAttribute="top" secondItem="imo-Im-B0W" secondAttribute="top" id="qcC-bb-Dry"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="BEw-Fg-KyF"/>
+            <point key="canvasLocation" x="821.73913043478262" y="-96.428571428571431"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Account screen design" width="375" height="170"/>
+    </resources>
+</document>
