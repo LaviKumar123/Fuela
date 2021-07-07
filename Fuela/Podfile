@@ -13,6 +13,8 @@ target 'Fuela' do
    pod 'FloatingPanel'
    pod "GSKStretchyHeaderView"
    pod 'SKCountryPicker'
+   pod 'HTMLReader', '~> 0.9'
+
 
   # Pods for Fuela
 
