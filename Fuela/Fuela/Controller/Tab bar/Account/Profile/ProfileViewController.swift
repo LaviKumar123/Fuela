@@ -100,21 +100,21 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource {
         
         switch detail {
         case .Personal:
-            let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "PersonalDetailsViewController") as! PersonalDetailsViewController
+            let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "PersonalDetailsViewController") as! PersonalDetailsViewController
             self.navigationController?.pushViewController(vc, animated: true)
             break;
         case .Work:
-            let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "WorkDetailsViewController") as! WorkDetailsViewController
+            let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "WorkDetailsViewController") as! WorkDetailsViewController
             vc.isForUpdate = true
             self.navigationController?.pushViewController(vc, animated: true)
             break;
         case .Income:
-            let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "IncomeDetailsViewController") as! IncomeDetailsViewController
+            let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "IncomeDetailsViewController") as! IncomeDetailsViewController
             vc.isForUpdate = true
             self.navigationController?.pushViewController(vc, animated: true)
             break;
         case .Banking:
-            let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "BankingDetailsViewController") as! BankingDetailsViewController
+            let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "BankingDetailsViewController") as! BankingDetailsViewController
             vc.isForUpdate = true
             self.navigationController?.pushViewController(vc, animated: true)
             break;

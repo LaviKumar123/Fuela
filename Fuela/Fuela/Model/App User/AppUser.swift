@@ -85,9 +85,39 @@ class AppUser {
         }
     }
     
+    var surname: String! {
+        get {
+            return self.data["surname"] as? String ?? ""
+        }
+    }
+    
     var phone: String! {
         get {
             return self.data["mobile"] as? String ?? ""
+        }
+    }
+    
+    var gender: String! {
+        get {
+            return self.data["gender"] as? String ?? ""
+        }
+    }
+    
+    var pincode: String! {
+        get {
+            return self.data["pincode"] as? String ?? ""
+        }
+    }
+    
+    var address2: String! {
+        get {
+            return self.data["address2"] as? String ?? ""
+        }
+    }
+    
+    var dob: String! {
+        get {
+            return self.data["dob"] as? String ?? ""
         }
     }
     

@@ -38,7 +38,7 @@ class AlertView: UIView {
         }) { _ in
             
             
-            UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.5, delay: 1.5, options: .curveEaseIn, animations: {
                 
                 containerView.alpha = 0
                 

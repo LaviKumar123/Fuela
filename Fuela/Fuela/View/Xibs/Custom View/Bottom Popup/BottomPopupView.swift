@@ -74,13 +74,13 @@ class BottomPopupView: UIView {
     
     @IBAction func scanAndPayButtonTapped(_ sender: UIButton) {
         self.cancelButtonTapped(sender)
-        let vc = HOME_STORYBOARD.instantiateViewController(identifier: "FuelaPayViewController") as! FuelaPayViewController
+        let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier: "FuelaPayViewController") as! FuelaPayViewController
         SCENE_DELEGATE!.navigationController.pushViewController(vc, animated: true)
     }
     
     @IBAction func myRequestButtonTapped(_ sender: UIButton) {
         self.cancelButtonTapped(sender)
-        let vc = HOME_STORYBOARD.instantiateViewController(identifier: "RequestReceivedViewController") as! RequestReceivedViewController
+        let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier: "RequestReceivedViewController") as! RequestReceivedViewController
         SCENE_DELEGATE!.navigationController.pushViewController(vc, animated: true)
     }
 }

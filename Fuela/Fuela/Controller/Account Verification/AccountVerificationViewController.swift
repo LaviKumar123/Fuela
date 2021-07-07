@@ -22,7 +22,7 @@ class AccountVerificationViewController: UIViewController {
     }
     
     @IBAction func underReviewButtonTapped(_ sender: UIButton) {
-        let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "QuotationViewController") as! QuotationViewController
+        let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "QuotationViewController") as! QuotationViewController
         self.navigationController!.pushViewController(vc, animated: true)
     }
 }

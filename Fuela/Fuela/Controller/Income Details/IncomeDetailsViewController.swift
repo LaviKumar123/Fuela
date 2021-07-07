@@ -141,13 +141,13 @@ extension IncomeDetailsViewController {
         }else  if self.salaryDateTextField.text!.isEmpty {
             errorMessage = "Please select salary date."
         }else  if self.additionalIncomeTextField.text!.isEmpty {
-            errorMessage = "Please enter additional income."
+            errorMessage = "Please enter income."
         }else  if self.totalIncomeTextField.text!.isEmpty {
-            errorMessage = "Please enter total income."
+            errorMessage = "Please enter Additional income."
         }else  if self.totalExpTextField.text!.isEmpty {
             errorMessage = "Please enter total expenses."
-        }else  if self.netIncomeTextField.text!.isEmpty {
-            errorMessage = "Please enter net income."
+//        }else  if self.netIncomeTextField.text!.isEmpty {
+//            errorMessage = "Please enter net income."
         }else {
             return true
         }

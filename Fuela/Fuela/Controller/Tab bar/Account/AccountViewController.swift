@@ -14,8 +14,8 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var menuTableView: UITableView!
     
     //MARK:- Variables
-    var titles = ["Quotation Status", "Terms & Conditions", "Legal", "Help", "FAQ's", "Contact Us", "Change Password", "Logout"]
-    var icons: [UIImage] = [#imageLiteral(resourceName: "Quotation Status"),#imageLiteral(resourceName: "Terms & Conditions"),#imageLiteral(resourceName: "Legal"),#imageLiteral(resourceName: "Help"),#imageLiteral(resourceName: "FAQ’s"),#imageLiteral(resourceName: "Contact Us"),#imageLiteral(resourceName: "Change Password"),#imageLiteral(resourceName: "Logout")]
+    var titles = ["Quotation Status", "Terms & Conditions", /*"Legal",*/ "Help", "FAQ's", "Contact Us", "Change Password", "Logout"]
+    var icons: [UIImage] = [#imageLiteral(resourceName: "Quotation Status"),#imageLiteral(resourceName: "Terms & Conditions"),/*#imageLiteral(resourceName: "Legal"),*/#imageLiteral(resourceName: "Help"),#imageLiteral(resourceName: "FAQ’s"),#imageLiteral(resourceName: "Contact Us"),#imageLiteral(resourceName: "Change Password"),#imageLiteral(resourceName: "Logout")]
     
     //MARK:- Variable
     var stretchyHeaderView : AccountHeaderView!
@@ -80,32 +80,32 @@ extension AccountViewController : UITableViewDelegate, UITableViewDataSource {
         
         switch title {
         case "Quotation Status":
-            let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "QuotationViewController") as! QuotationViewController
+            let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "QuotationViewController") as! QuotationViewController
             vc.fromMenu = true
             self.navigationController?.pushViewController(vc, animated: true)
             break;
         case "Terms & Conditions":
-            let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "Terms_ConditionsViewController") as! Terms_ConditionsViewController
+            let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "Terms_ConditionsViewController") as! Terms_ConditionsViewController
             self.navigationController?.pushViewController(vc, animated: false)
             break;
         case "Legal":
-            let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "LegalViewController") as! LegalViewController
+            let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "LegalViewController") as! LegalViewController
             self.navigationController?.pushViewController(vc, animated: true)
             break;
         case "Help":
-            let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "HelpViewController") as! HelpViewController
+            let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "HelpViewController") as! HelpViewController
             self.navigationController?.pushViewController(vc, animated: true)
             break;
         case "FAQ's":
-            let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "FAQsViewController") as! FAQsViewController
+            let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "FAQsViewController") as! FAQsViewController
             self.navigationController?.pushViewController(vc, animated: true)
             break;
         case "Contact Us":
-                let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "ContactUsViewController") as! ContactUsViewController
+                let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "ContactUsViewController") as! ContactUsViewController
                 self.navigationController?.pushViewController(vc, animated: true)
                 break;
         case "Change Password":
-                let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "ChangePasswordViewController") as! ChangePasswordViewController
+                let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
                 self.navigationController?.pushViewController(vc, animated: true)
                 break;
         case "Logout":

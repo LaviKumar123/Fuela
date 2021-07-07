@@ -10,6 +10,7 @@ import UIKit
 
 class CreditRequestDetailsViewController: UIViewController {
     
+    //MARK:- Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,22 +24,24 @@ class CreditRequestDetailsViewController: UIViewController {
     }
     
     @IBAction func editWorkDetailsButtonTapped(_ sender: UIButton) {
-        let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "WorkDetailsViewController") as! WorkDetailsViewController
+        let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "WorkDetailsViewController") as! WorkDetailsViewController
         vc.isForUpdate = true
         self.navigationController!.pushViewController(vc, animated: true)
     }
     @IBAction func editIncomeDetailsButtonTapped(_ sender: UIButton) {
-        let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "IncomeDetailsViewController") as! IncomeDetailsViewController
+        let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "IncomeDetailsViewController") as! IncomeDetailsViewController
         vc.isForUpdate = true
         self.navigationController!.pushViewController(vc, animated: true)
     }
     
     @IBAction func editBankingDetailsButtonTapped(_ sender: UIButton) {
-        let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "BankingDetailsViewController") as! BankingDetailsViewController
+        let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "BankingDetailsViewController") as! BankingDetailsViewController
         vc.isForUpdate = true
         self.navigationController!.pushViewController(vc, animated: true)
     }
     
     @IBAction func requestNowButtonTapped(_ sender: UIButton) {
+        let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier: "CreditRequestViewController") as! CreditRequestViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

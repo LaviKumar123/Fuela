@@ -46,7 +46,7 @@ extension StationViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = HOME_STORYBOARD.instantiateViewController(identifier: "StationDetailsViewController") as! StationDetailsViewController
+        let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier: "StationDetailsViewController") as! StationDetailsViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

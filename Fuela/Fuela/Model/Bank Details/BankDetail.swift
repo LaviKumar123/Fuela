@@ -37,6 +37,12 @@ struct BankDetail {
         }
     }
     
+    var accountType: String! {
+        get {
+            return self.data["account_type"] as? String ?? ""
+        }
+    }
+    
     var branchCode: String! {
         get {
             return self.data["branch_code"] as? String ?? ""

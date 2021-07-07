@@ -30,7 +30,7 @@ extension RecentFuelaPayViewController : UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = HOME_STORYBOARD.instantiateViewController(identifier: "PayViewController") as! PayViewController
+        let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier: "PayViewController") as! PayViewController
         self.navigationController?.pushViewController(vc, animated: false)
     }
 }

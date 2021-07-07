@@ -280,6 +280,39 @@ class WebAPI {
         }
     }
     
+    class func requestToPostSOAPApiWithHeader(_ urlString: String,_ params: Any?, header: [String:Any],completion: @escaping(_ receivedData: AnyObject, _ isSuccess: Bool)-> Void) {
+        let postData = NSMutableData()
+        
+       
+        let url = urlString
+        print(url)
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = (header as! [String : String])
+        request.timeoutInterval = 500
+        
+        if let parameter = params as? String {
+            request.httpBody = parameter.data(using: .utf8)
+        }
+        
+        Alamofire.request(request).responseString { response in
+            if response.response != nil {
+                if "\(response.result)" != "FAILURE" {
+                    if let json = response.result.value {
+                        completion(json as AnyObject, true)
+                    }else {
+                        
+                        completion(["Error" : response.error?.localizedDescription] as AnyObject, false)
+                    }
+                }else {
+                    self.gotToLogin()
+                }
+            }else {
+                completion(["Error" : response.error?.localizedDescription] as AnyObject, false)
+            }
+        }
+    }
+    
     class func requestToGetWithHeader(_ urlString : String, header: [String: AnyObject], completion: @escaping(_ receivedData: AnyObject, _ isSuccess : Bool)-> Void) {
         
         var url = urlString

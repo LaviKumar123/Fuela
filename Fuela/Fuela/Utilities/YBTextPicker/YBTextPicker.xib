@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +12,7 @@
             <connections>
                 <outlet property="btnClose" destination="f35-JR-F7N" id="rZI-5o-cO1"/>
                 <outlet property="btnDone" destination="OTO-nA-Ief" id="Aas-Bh-Bys"/>
-                <outlet property="containerHeight" destination="4PF-W4-p7d" id="rxA-lG-o5i"/>
+                <outlet property="containerHeight" destination="4PF-W4-p7d" id="EYy-mp-SsN"/>
                 <outlet property="containerView" destination="Tr2-0C-sf4" id="AmG-F3-xmq"/>
                 <outlet property="paddingToLeft" destination="eu8-py-xYi" id="VZ9-5e-1Tu"/>
                 <outlet property="paddingToRight" destination="G9E-wO-0Wq" id="TxE-4h-R6d"/>
@@ -37,7 +38,7 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tr2-0C-sf4">
-                    <rect key="frame" x="16" y="134" width="288" height="300"/>
+                    <rect key="frame" x="16" y="184" width="288" height="200"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFs-xA-710">
                             <rect key="frame" x="0.0" y="0.0" width="288" height="50"/>
@@ -50,7 +51,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="42M-Np-bAD">
-                            <rect key="frame" x="0.0" y="50" width="288" height="200"/>
+                            <rect key="frame" x="0.0" y="50" width="288" height="100"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="EqZ-XJ-iLQ"/>
@@ -58,7 +59,7 @@
                             </connections>
                         </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qxl-E7-DRp">
-                            <rect key="frame" x="0.0" y="250" width="288" height="50"/>
+                            <rect key="frame" x="0.0" y="150" width="288" height="50"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hf8-wg-xgQ">
                                     <rect key="frame" x="0.0" y="0.0" width="288" height="1"/>
@@ -67,7 +68,7 @@
                                         <constraint firstAttribute="height" constant="1" id="fhV-IN-2Ma"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f35-JR-F7N">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f35-JR-F7N">
                                     <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="J5A-Gy-sqN"/>
@@ -80,7 +81,7 @@
                                         <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="jPx-Qz-KCU"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTO-nA-Ief">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTO-nA-Ief">
                                     <rect key="frame" x="208" y="0.0" width="80" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="WG2-yt-mF8"/>
@@ -122,7 +123,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="xFs-xA-710" secondAttribute="trailing" id="2m5-y5-Cmy"/>
-                        <constraint firstAttribute="height" constant="300" id="4PF-W4-p7d"/>
+                        <constraint firstAttribute="height" constant="200" id="4PF-W4-p7d"/>
                         <constraint firstItem="bKf-rF-GD7" firstAttribute="top" secondItem="xFs-xA-710" secondAttribute="bottom" id="6kv-nN-jr0"/>
                         <constraint firstItem="qxl-E7-DRp" firstAttribute="top" secondItem="42M-Np-bAD" secondAttribute="bottom" id="BcJ-D8-XtA"/>
                         <constraint firstItem="qxl-E7-DRp" firstAttribute="leading" secondItem="Tr2-0C-sf4" secondAttribute="leading" id="Hzy-gN-ywr"/>
@@ -143,6 +144,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Xzg-ev-FkF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="61r-sx-2dk"/>
@@ -153,7 +155,6 @@
                 <constraint firstItem="Tr2-0C-sf4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="txD-ZR-2lQ"/>
                 <constraint firstAttribute="bottom" secondItem="Xzg-ev-FkF" secondAttribute="bottom" id="vlt-j6-PUl"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="108" y="58.374384236453203"/>
         </view>
         <tapGestureRecognizer id="m2X-4G-NBg">

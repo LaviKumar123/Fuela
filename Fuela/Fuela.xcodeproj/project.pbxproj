@@ -133,6 +133,7 @@
 
 /* Begin PBXFileReference section */
 		16D900BB0E809F697BE24E44 /* Pods-Fuela.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fuela.release.xcconfig"; path = "Target Support Files/Pods-Fuela/Pods-Fuela.release.xcconfig"; sourceTree = "<group>"; };
+		1885E890262DA76C0011AB9D /* Fuela-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fuela-Bridging-Header.h"; sourceTree = "<group>"; };
 		5B013B3224EEA11B008F2C25 /* AlertWithOkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertWithOkView.xib; sourceTree = "<group>"; };
 		5B013B3424EEA16B008F2C25 /* AlertWithOkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWithOkView.swift; sourceTree = "<group>"; };
 		5B0F861024E14B7F00195951 /* Terms&ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Terms&ConditionsViewController.swift"; sourceTree = "<group>"; };
@@ -273,6 +274,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1885E88F262DA7350011AB9D /* Bridzing Header */ = {
+			isa = PBXGroup;
+			children = (
+				1885E890262DA76C0011AB9D /* Fuela-Bridging-Header.h */,
+			);
+			path = "Bridzing Header";
+			sourceTree = "<group>";
+		};
 		4BFC135D3F340D3C6F88453F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +655,7 @@
 		5B9E4AA624DBDC5B00990F59 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				1885E88F262DA7350011AB9D /* Bridzing Header */,
 				5B6F6C6124DC304F00D2C48F /* Curve View */,
 				5B9E4AA724DBDC5B00990F59 /* Sky Floating */,
 				5B9E4AAD24DBDC5B00990F59 /* Extension */,
@@ -1079,6 +1089,7 @@
 				TargetAttributes = {
 					5B9E4A8824DBDBBA00990F59 = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -1421,10 +1432,12 @@
 			baseConfigurationReference = 880A9E14541AEA5BD9FAF808 /* Pods-Fuela.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DZY2G9354J;
 				INFOPLIST_FILE = Fuela/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1432,8 +1445,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.designoweb.Fuela;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Fuela/Utilities/Bridzing Header/Fuela-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1442,10 +1457,12 @@
 			baseConfigurationReference = 16D900BB0E809F697BE24E44 /* Pods-Fuela.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DZY2G9354J;
 				INFOPLIST_FILE = Fuela/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1453,8 +1470,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.designoweb.Fuela;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Fuela/Utilities/Bridzing Header/Fuela-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

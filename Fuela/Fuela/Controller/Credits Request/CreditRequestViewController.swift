@@ -100,12 +100,17 @@ extension CreditRequestViewController {
                         customSuccessPopUp(textToDisplay: message)
                         
                         let appUser = AppUser(data)
-                        let vc = MAIN_STORYBOARD.instantiateViewController(identifier: "AccountVerificationViewController") as! AccountVerificationViewController
+                        let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier: "AccountVerificationViewController") as! AccountVerificationViewController
                         self.navigationController!.pushViewController(vc, animated: true)
                     }
                 }else {
-                    let message = (response as! [String:Any])["Error"] as? String ?? ""
-                    AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+                    if let message = (response as! [String:Any])["Error"] as? String {
+                        AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+                    }else if let error = (response as! [String:Any])["errors"] as? [String:Any],
+                             let userIDError = error["user_id"] as? String{
+                        AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: userIDError)
+                    }
+                    
                 }
             }else {
                 let message = (response as! [String:Any])["Error"] as? String ?? ""

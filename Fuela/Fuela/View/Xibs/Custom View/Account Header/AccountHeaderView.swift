@@ -33,7 +33,7 @@ class AccountHeaderView: GSKStretchyHeaderView {
     
     //MARK:- Button Action
     @IBAction func profileButtonTapped(_ sender: UIButton) {
-        let vc = ACCOUNT_STORYBOARD.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
+        let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         SCENE_DELEGATE!.navigationController.pushViewController(vc, animated: true)
     }
 }

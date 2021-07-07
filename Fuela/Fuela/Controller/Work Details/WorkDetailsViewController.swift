@@ -49,12 +49,11 @@ class WorkDetailsViewController: UIViewController {
         
         self.employerTextField.text         = work.employer
         self.occupationTextField.text       = work.occupation
-        self.yearOfExpTextField.text        = work.experienceYear + " Year"
-        self.monthOfExpTextField.text       = work.experienceMonth + " Month"
+        self.yearOfExpTextField.text        = work.experienceYear
         self.addressTextField.text          = work.address
         self.contactNumberTextField.text    = work.contactNumber
         self.contactPersonTextField.text    = work.contactPerson
-        self.countryCode                    = "+" + work.countryCode
+        self.countryCode                    = work.countryCode
         self.countryCodeButton.setTitle(self.countryCode, for: .normal)
     }
     
@@ -158,8 +157,8 @@ extension WorkDetailsViewController {
             errorMessage = "Please enter occupation."
         }else  if self.yearOfExpTextField.text!.isEmpty {
             errorMessage = "Please enter year of experience."
-        }else  if self.monthOfExpTextField.text!.isEmpty {
-            errorMessage = "Please enter month of experience."
+//        }else  if self.monthOfExpTextField.text!.isEmpty {
+//            errorMessage = "Please enter month of experience."
         }else  if self.addressTextField.text!.isEmpty {
             errorMessage = "Please enter address."
         }else  if self.contactPersonTextField.text!.isEmpty {
@@ -182,8 +181,8 @@ extension WorkDetailsViewController {
                         "user_id"           :AppUser.shared.id!,
                         "employer"          :self.employerTextField.text!,
                         "occupation"        :self.occupationTextField.text!,
-                        "experience_year"   :self.yearOfExpTextField.text!.replacingOccurrences(of: " Year", with: ""),
-                        "experience_month"  :self.monthOfExpTextField.text!.replacingOccurrences(of: " Month", with: ""),
+                        "experience"   :self.yearOfExpTextField.text!,
+//                        "experience_month"  :self.monthOfExpTextField.text!.replacingOccurrences(of: " Month", with: ""),
                         "address"           :self.addressTextField.text!,
                         "contact_person"    :self.contactPersonTextField.text!,
                         "contact_number"    :self.contactNumberTextField.text!,
@@ -196,7 +195,7 @@ extension WorkDetailsViewController {
         
         Indicator.shared.startAnimating(self.view)
         
-        WebAPI.requestToPostBodyWithHeader(url, param as [String : AnyObject], header: [:])  { (response, isSuccess) in
+        WebAPI.requestToPostWithData(url, params: param, header: [:], fileData: nil, fileKey: "Image", fileName: "sdfjkb")  { (response, isSuccess) in
             
             Indicator.shared.stopAnimating()
             

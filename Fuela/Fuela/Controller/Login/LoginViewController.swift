@@ -16,24 +16,22 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     var countryCode = ""
+    
+    var currentValue: String?
+    private var activeElement: String?
 
     //MARK:- Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.getRegionCode()
     }
-    
-    
-    
-    
     
     func getRegionCode(){
         let locale = Locale.current
         print(locale.regionCode)
     }
     
-   
-
     //MARK:- Button Action
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         

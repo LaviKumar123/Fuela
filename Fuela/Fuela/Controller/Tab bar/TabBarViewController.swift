@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HTMLReader
 
 class TabBarViewController: UIViewController {
     
@@ -18,9 +19,9 @@ class TabBarViewController: UIViewController {
     @IBOutlet weak var addNewButton: UIButton!
     
     //MARK:- Variables
-    var homeViewController      : HomeViewController!
-    var notificationViewController    : NotificationViewController!
-    var historyViewController   : HistoryViewController!
+    var homeViewController         : HomeViewController!
+    var notificationViewController : NotificationViewController!
+    var historyViewController      : HistoryViewController!
     var accountViewController      : AccountViewController!
     
     var viewControllers : [UIViewController]!
@@ -28,6 +29,8 @@ class TabBarViewController: UIViewController {
     
     var selectedIcons   : [UIImage] = [#imageLiteral(resourceName: "home red"),#imageLiteral(resourceName: "Notification Red"),#imageLiteral(resourceName: "History Red"),#imageLiteral(resourceName: "Account red")]
     var unselectedIcons : [UIImage] = [#imageLiteral(resourceName: "home grey"),#imageLiteral(resourceName: "Notification Grey"),#imageLiteral(resourceName: "History Grey"),#imageLiteral(resourceName: "Account Grey")]
+    
+   
     
     //MARK:- Controller Life Cycle
     override func viewDidLoad() {
@@ -43,12 +46,12 @@ class TabBarViewController: UIViewController {
     
     func configureViewControllers() {
         
-        self.homeViewController     = HOME_STORYBOARD.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
-        self.notificationViewController   = HOME_STORYBOARD.instantiateViewController(withIdentifier: "NotificationViewController") as? NotificationViewController
-        self.historyViewController  = HOME_STORYBOARD.instantiateViewController(withIdentifier: "HistoryViewController") as? HistoryViewController
-        self.accountViewController     = HOME_STORYBOARD.instantiateViewController(withIdentifier: "AccountViewController") as? AccountViewController
+        self.homeViewController         = HOME_STORYBOARD.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
+        self.notificationViewController  = HOME_STORYBOARD.instantiateViewController(withIdentifier: "NotificationViewController") as? NotificationViewController
+        self.historyViewController       = HOME_STORYBOARD.instantiateViewController(withIdentifier: "HistoryViewController") as? HistoryViewController
+        self.accountViewController       = HOME_STORYBOARD.instantiateViewController(withIdentifier: "AccountViewController") as? AccountViewController
         
-        self.viewControllers                = [homeViewController,notificationViewController,historyViewController,accountViewController]
+        self.viewControllers             = [homeViewController,notificationViewController,historyViewController,accountViewController]
         buttons[selectedIndex].isSelected   = true
         
         self.barButtonTapped(buttons[selectedIndex])

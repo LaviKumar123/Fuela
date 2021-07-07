@@ -3,6 +3,7 @@ PODS:
   - CRNotifications (1.2.1)
   - FloatingPanel (1.7.5)
   - GSKStretchyHeaderView (1.0.4)
+  - HTMLReader (0.9.6)
   - IQKeyboardManagerSwift (6.5.5)
   - SDWebImage (4.4.8):
     - SDWebImage/Core (= 4.4.8)
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - CRNotifications
   - FloatingPanel
   - GSKStretchyHeaderView
+  - HTMLReader (~> 0.9)
   - IQKeyboardManagerSwift
   - SDWebImage (~> 4.4.6)
   - SKCountryPicker
@@ -26,6 +28,7 @@ SPEC REPOS:
     - CRNotifications
     - FloatingPanel
     - GSKStretchyHeaderView
+    - HTMLReader
     - IQKeyboardManagerSwift
     - SDWebImage
     - SKCountryPicker
@@ -36,11 +39,12 @@ SPEC CHECKSUMS:
   CRNotifications: 2799786cb63e104c75699843d8928afd680182f3
   FloatingPanel: bb17fd6fc7ae519f877f7bd30f4f6115a78acf07
   GSKStretchyHeaderView: 9743704c12bdc9cf7c7947bad3af8bf24f7061e3
+  HTMLReader: 7e21488ee378afc56ccade8af35840c4e03e434c
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
   SKCountryPicker: 7ad1e7dfb482cfb26855e33c2d70dbf1eaf218fe
   TransitionButton: 36283346e17c64775a1b3bc3a7a72940a367de1f
 
-PODFILE CHECKSUM: 521ca89f4f20c877c7c206e6bc6d4aed9a873ec3
+PODFILE CHECKSUM: f0947cf81ed83ec2d54d820222dccb3dc98e5652
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

@@ -21,13 +21,13 @@ struct FAQ {
     
     var heading: String! {
         get {
-            return self.data["heading"] as? String ?? ""
+            return self.data["heading"] as? String ?? self.data["question"] as? String ?? ""
         }
     }
     
     var message: String! {
         get {
-            return self.data["message"] as? String ?? ""
+            return self.data["message"] as? String ?? self.data["answers"] as? String ?? ""
         }
     }
     

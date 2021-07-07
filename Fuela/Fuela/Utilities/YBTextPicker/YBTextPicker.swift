@@ -53,20 +53,19 @@ class YBTextPicker: UIViewController {
     
     //MARK:- IBOutlets
     @IBOutlet var tapToDismissGesture: UITapGestureRecognizer!
-    @IBOutlet weak var shadowView: UIView!
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var txtSearch: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var btnClose: UIButton!
-    @IBOutlet weak var btnDone: UIButton!
+    @IBOutlet weak var shadowView    : UIView!
+    @IBOutlet weak var containerView : UIView!
+    @IBOutlet weak var titleLabel    : UILabel!
+    @IBOutlet weak var txtSearch     : UISearchBar!
+    @IBOutlet weak var tableView     : UITableView!
+    @IBOutlet weak var btnClose      : UIButton!
+    @IBOutlet weak var btnDone       : UIButton!
     
     //MARK:- Constraints
-    @IBOutlet weak var paddingToTop: NSLayoutConstraint!
-    @IBOutlet weak var paddingToBottom: NSLayoutConstraint!
-    @IBOutlet weak var paddingToLeft: NSLayoutConstraint!
-    @IBOutlet weak var paddingToRight: NSLayoutConstraint!
-    
+    @IBOutlet weak var paddingToTop    : NSLayoutConstraint!
+    @IBOutlet weak var paddingToBottom : NSLayoutConstraint!
+    @IBOutlet weak var paddingToLeft   : NSLayoutConstraint!
+    @IBOutlet weak var paddingToRight  : NSLayoutConstraint!
     @IBOutlet weak var containerHeight: NSLayoutConstraint!
     
     //MARK:- Properties
@@ -78,7 +77,7 @@ class YBTextPicker: UIViewController {
     var preSelectedValues = [String]()
     
     var allowMultipleSelection = false
-    var tapToDismiss = true
+    var tapToDismiss = false
     var animation = YBTextPickerAnimation.FromBottom
     var appearanceManager : YBTextPickerAppearanceManager?
     
@@ -87,7 +86,7 @@ class YBTextPicker: UIViewController {
     
     var leftPadding = 20
     var rightPadding = 20
-    var height = 300
+    var height = 200
     
     init (
         with items : [String],
@@ -111,6 +110,8 @@ class YBTextPicker: UIViewController {
         self.cancelHandler = onCancel
         
         self.modalPresentationStyle = .overCurrentContext
+        
+        self.view.endEditing(true)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -125,13 +126,14 @@ class YBTextPicker: UIViewController {
                 shouldAnimate = true
             }
             topController.present(self, animated: shouldAnimate, completion: nil)
+            
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupLayout()
+        self.setupLayout()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -139,17 +141,16 @@ class YBTextPicker: UIViewController {
         UIView.animate(withDuration: animationDuration, animations: {
             self.shadowView.backgroundColor = self.shadowColor.withAlphaComponent(self.shadowAmount)
             
-            if self.animation == .Fade{
+            if (self.animation == .Fade) {
                 self.containerView.alpha = 1
             }
-            
         })
     }
     
     func setupLayout(){
         tableView.register(UINib.init(nibName: "YBTextPickerCell", bundle: nil), forCellReuseIdentifier: "YBTextPickerCell")
         
-        if animation == .Fade{
+        if (animation == .Fade) {
             containerView.alpha = 0
         }
         
@@ -277,7 +278,7 @@ extension YBTextPicker : UISearchBarDelegate{
             }
             
         }
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

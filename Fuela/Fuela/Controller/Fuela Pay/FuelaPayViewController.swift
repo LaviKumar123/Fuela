@@ -34,7 +34,7 @@ class FuelaPayViewController: UIViewController {
     //MARK:- Bottom FloatingPanel Setup
     func floatingPanelSetup() {
         self.fpc = FloatingPanelController()
-        let contentVC = HOME_STORYBOARD.instantiateViewController(identifier: "RecentFuelaPayViewController") as! RecentFuelaPayViewController
+        let contentVC = HOME_STORYBOARD.instantiateViewController(withIdentifier: "RecentFuelaPayViewController") as! RecentFuelaPayViewController
         self.fpc.set(contentViewController: contentVC)
         self.fpc.addPanel(toParent: self)
         self.fpc.view.cornerRadius = 20
