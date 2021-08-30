@@ -19,13 +19,15 @@ class WorkDetailsViewController: UIViewController {
     @IBOutlet weak var addressTextField          : UITextField!
     @IBOutlet weak var contactPersonTextField    : UITextField!
     @IBOutlet weak var contactNumberTextField    : UITextField!
-    @IBOutlet weak var countryCodeButton         : UIButton!
+    @IBOutlet weak var countryCodeLabel          : UILabel!
+    @IBOutlet weak var countryFlagImageView      : UIImageView!
     
     @IBOutlet weak var updateButtonView : UIView!
     @IBOutlet weak var nextButtton      : UIButton!
     
     //MARK:- Variables
     var isForUpdate = false
+    var isFromRegistration = false
     var countryCode  = "+27"
     
     //MARK:- Controller Life Cycle
@@ -35,13 +37,14 @@ class WorkDetailsViewController: UIViewController {
         self.updateButtonView.isHidden = !self.isForUpdate
         self.nextButtton.isHidden      = self.isForUpdate
         
+        self.countryFlagImageView.image = CountryManager.shared.country(withDigitCode: "+27")?.flag
+        
         if self.isForUpdate {
             if let work = WorkDetail.shared {
                 self.dataSetup(work)
             }else {
                 self.requestToGetDetails()
             }
-            
         }
     }
     
@@ -54,7 +57,7 @@ class WorkDetailsViewController: UIViewController {
         self.contactNumberTextField.text    = work.contactNumber
         self.contactPersonTextField.text    = work.contactPerson
         self.countryCode                    = work.countryCode
-        self.countryCodeButton.setTitle(self.countryCode, for: .normal)
+        self.countryFlagImageView.image = CountryManager.shared.country(withDigitCode: self.countryCode)?.flag
     }
     
     //MARK:- Button Action
@@ -78,9 +81,10 @@ class WorkDetailsViewController: UIViewController {
         
         let countryController = CountryPickerController.presentController(on: self) { (country) in
             
-            //            self.countryImageView.image = country.flag
-            self.countryCodeButton.setTitle(country.dialingCode, for: .normal)
             self.countryCode = country.dialingCode!
+            self.countryCodeLabel.text  = self.countryCode
+            let flag = country.flag
+            self.countryFlagImageView.image = flag
         }
         
         countryController.detailColor = UIColor.red
@@ -138,6 +142,8 @@ extension WorkDetailsViewController: UITextFieldDelegate {
         picker.leftPadding = 50
         picker.rightPadding = 50
         picker.height = 350
+        picker.preSelectedValues = [sender.text!]
+        picker.setupLayout()
         picker.show(withAnimation: .FromBottom)
     }
 }
@@ -152,7 +158,7 @@ extension WorkDetailsViewController {
         var errorMessage = ""
         
         if self.employerTextField.text!.isEmpty {
-            errorMessage = "Please enter full name."
+            errorMessage = "Please enter employer."
         }else  if self.occupationTextField.text!.isEmpty {
             errorMessage = "Please enter occupation."
         }else  if self.yearOfExpTextField.text!.isEmpty {
@@ -215,6 +221,7 @@ extension WorkDetailsViewController {
                                 self.navigationController?.popViewController(animated: true)
                             }else {
                                 let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier:  "IncomeDetailsViewController") as! IncomeDetailsViewController
+                                vc.isFromRegistration = self.isFromRegistration
                                 self.navigationController?.pushViewController(vc, animated: true)
                             }
                         }

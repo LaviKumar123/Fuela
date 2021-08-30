@@ -10,6 +10,7 @@ import UIKit
 
 class RequestReceivedViewController: UIViewController {
 
+    //MARK:- Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

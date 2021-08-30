@@ -10,8 +10,9 @@ import Foundation
 
 class URLConstant {
     
-    static let baseURL                  = "http://designoweb.work/fuela/api/"
-    static let imageURL                 = "http://designoweb.work/fuela/"
+    //MARK:- Main APIs
+    static let baseURL                  = "https://www.fuela.co.za/api/"
+    static let imageURL                 = "https://www.fuela.co.za/"
 
     static let faq                      = "faq"
     static let contactUS                = "contact_us"
@@ -27,6 +28,7 @@ class URLConstant {
     static let usersBankdetails         = "usersBankdetails"
     static let usersCredit              = "usersCredit"
     static let updatePersonalDetails    = "updatePersonalDetail"
+    static let getPersonalDetails       = "getPersonalDetails"
     static let updateWorkDetails        = "updateUserWorkDetail"
     static let updateIncomedetails      = "updateUsersIncomedetails"
     static let updateBankdetails        = "updateUsersBankdetail"
@@ -38,6 +40,23 @@ class URLConstant {
     static let getConatctDetail         = "get_conatct_detail"
     static let deleteUserAccount        = "delete_user_account"
     static let quotation                = "quatation"
+    static let quatationStatus          = "quatationStatus"
     static let updateProfileImage       = "change_profile"
+    static let addCardNo                = "addCardNo"
+    static let updateCardNo             = "updateCardNo"
+    static let getCardDetails           = "getCardDetails"
+    static let requestCredit            = "requestCredit"
+    static let getCreditRequest         = "getCreditRequest"
+    static let getfuelstation           = "getfuelstation"
+    static let rewardBalance            = "rewardBalance"
+    static let recentRewards            = "recentRewards"
+    static let doRequestReedem          = "doRequestReedem"
+    
+    //MARK:- Paycentral
+    static let payCentralBaseURL        = "https://api.paycentral.co.za/"
+    
+    static let authenticate             = "authenticate"
+    static let cardBalance              = "card/balance"
+    static let cardStatement            = "card/cards_statement"
 }
 

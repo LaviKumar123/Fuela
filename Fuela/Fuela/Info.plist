@@ -67,5 +67,20 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>App need to access camera to set user photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App need to access photo library to set user photos</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App need the location to find the fuel station</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>App need the location to find the fuel station</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>App need the location to find the fuel station</string>
 </dict>
 </plist>

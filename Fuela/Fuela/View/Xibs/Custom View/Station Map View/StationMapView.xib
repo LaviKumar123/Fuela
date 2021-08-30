@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,20 +15,29 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="358"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="I5U-5T-VTf">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="srS-f3-eYN" customClass="GMSMapView">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="358"/>
-                </mapView>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="1" green="0.3333503008" blue="0.098148055370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="I5U-5T-VTf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1ba-tD-ut8"/>
-                <constraint firstItem="I5U-5T-VTf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DNP-YM-o1g"/>
-                <constraint firstAttribute="bottom" secondItem="I5U-5T-VTf" secondAttribute="bottom" id="LwV-QT-MX1"/>
-                <constraint firstAttribute="trailing" secondItem="I5U-5T-VTf" secondAttribute="trailing" id="WmA-ri-JO5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="srS-f3-eYN" secondAttribute="trailing" id="CXq-Zb-vxL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="srS-f3-eYN" secondAttribute="bottom" id="abU-3F-cFm"/>
+                <constraint firstItem="srS-f3-eYN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oZx-g5-ohd"/>
+                <constraint firstItem="srS-f3-eYN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tqz-dp-soq"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="mapView" destination="srS-f3-eYN" id="kjR-km-AOx"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="-113.83928571428571"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

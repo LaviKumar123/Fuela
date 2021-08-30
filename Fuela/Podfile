@@ -14,6 +14,8 @@ target 'Fuela' do
    pod "GSKStretchyHeaderView"
    pod 'SKCountryPicker'
    pod 'HTMLReader', '~> 0.9'
+   pod 'GoogleMaps'
+   pod 'GooglePlaces'
 
 
   # Pods for Fuela

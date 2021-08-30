@@ -17,8 +17,8 @@ class LoginViewController: UIViewController {
     
     var countryCode = ""
     
-    var currentValue: String?
-    private var activeElement: String?
+    var currentValue          : String?
+    private var activeElement : String?
 
     //MARK:- Controller Life Cycle
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
     
     func getRegionCode(){
         let locale = Locale.current
-        print(locale.regionCode)
+//        print(locale.regionCode)
     }
     
     //MARK:- Button Action
@@ -74,15 +74,15 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     func requestToLogin() {
         let param = [
-                        "email":self.emailTextField.text!,
-                        "password":self.passwordTextField.text!,
-                    ]
+            "email"    : self.emailTextField.text!,
+            "password" : self.passwordTextField.text!,
+        ]
         
         print(param)
         
         Indicator.shared.startAnimating(self.view)
         
-        WebAPI.requestToPostBodyWithHeader(URLConstant.login, param as [String : AnyObject], header: [:])  { (response, isSuccess) in
+        WebAPI.requestToPostWithDataWithoutHeader(URLConstant.login, params: param, fileData: nil, fileKey: "", fileName: ""){ (response, isSuccess) in
             
             Indicator.shared.stopAnimating()
             
@@ -100,8 +100,15 @@ extension LoginViewController {
                         self.redirectToStepPage(appUser.step, data: data)
                     }
                 }else {
-                    let message = (response as! [String:Any])["msg"] as? String ?? ""
-                    AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+                    if let errors = (response as! [String:Any])["errors"] as? [String:Any] {
+                        for (key,value) in errors {
+                            AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: value as! String)
+                            return
+                        }
+                    }else {
+                        let message = (response as! [String:Any])["msg"] as? String ?? ""
+                        AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+                    }
                 }
             }else {
                 let message = (response as! [String:Any])["Error"] as? String ?? ""
@@ -130,12 +137,17 @@ extension LoginViewController {
             self.navigationController?.pushViewController(vc, animated: true)
             break;
         default:
-            
+            let appUser = AppUser(data)
             let archiveData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
             UserDefaults.standard.set(archiveData, forKey: "Loggin User")
             
-            let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier:  "TabBarViewController") as! TabBarViewController
-            self.navigationController?.pushViewController(vc, animated: true)
+            if appUser.isUserAccepted == "accepted" {
+                let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier:  "TabBarViewController") as! TabBarViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier: "AccountVerificationViewController") as! AccountVerificationViewController
+                self.navigationController!.pushViewController(vc, animated: true)
+            }
         }
     }
 }

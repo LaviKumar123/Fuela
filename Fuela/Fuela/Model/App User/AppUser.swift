@@ -37,6 +37,24 @@ class AppUser {
         }
     }
     
+    var isCardAdded: Bool! {
+        get {
+            return self.data["is_card"] as? Bool ?? false
+        }
+    }
+    
+    var isUserAccepted: String! {
+        get {
+            return self.data["user_status"] as? String ?? ""
+        }
+    }
+    
+    var cardNumber: String! {
+        get {
+            return self.data["card_no"] as? String ?? ""
+        }
+    }
+    
     var isForgot: String! {
         get {
             return self.data["is_forgot"] as? String ?? ""
@@ -132,6 +150,10 @@ class AppUser {
             if let id = self.data["user_id"] as? Int {
                 return "\(id)"
             }else if let id = self.data["user_id"] as? String {
+                return id
+            }else if let id = self.data["id"] as? Int {
+                return "\(id)"
+            }else if let id = self.data["id"] as? String {
                 return id
             }else {
                 return "0"

@@ -9,7 +9,11 @@
 import UIKit
 
 class AccountVerificationViewController: UIViewController {
-
+    
+    var isFromRegistration = false
+    var isFromHome = false
+    
+    //MARK:- Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +26,16 @@ class AccountVerificationViewController: UIViewController {
     }
     
     @IBAction func underReviewButtonTapped(_ sender: UIButton) {
-        let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "QuotationViewController") as! QuotationViewController
-        self.navigationController!.pushViewController(vc, animated: true)
+//        let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "QuotationViewController") as! QuotationViewController
+//        self.navigationController!.pushViewController(vc, animated: true)
+        if self.isFromRegistration {
+            let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier:  "LoginViewController") as! LoginViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if self.isFromHome {
+            self.navigationController?.popViewController(animated: false)
+        }else {
+            let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier:  "TabBarViewController") as! TabBarViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

@@ -63,7 +63,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 self.navigationController.setViewControllers([tabBarVC], animated: false)
             }
-        }else {
+        } else {
             let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             
             self.navigationController.setViewControllers([vc], animated: true)

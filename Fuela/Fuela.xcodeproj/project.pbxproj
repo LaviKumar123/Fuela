@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1844968326DCE8420029DAA6 /* Rewards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844968226DCE8420029DAA6 /* Rewards.swift */; };
+		1851523326B9648600C5C7F2 /* FuelStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851523226B9648600C5C7F2 /* FuelStation.swift */; };
+		18B78D5826B7BCD200367288 /* CardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B78D5726B7BCD200367288 /* CardDetailsViewController.swift */; };
+		18B78D5D26B8079F00367288 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B78D5C26B8079F00367288 /* Transaction.swift */; };
 		5B013B3324EEA11B008F2C25 /* AlertWithOkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B013B3224EEA11B008F2C25 /* AlertWithOkView.xib */; };
 		5B013B3524EEA16B008F2C25 /* AlertWithOkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B013B3424EEA16B008F2C25 /* AlertWithOkView.swift */; };
 		5B0F861124E14B7F00195951 /* Terms&ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F861024E14B7F00195951 /* Terms&ConditionsViewController.swift */; };
@@ -133,7 +137,11 @@
 
 /* Begin PBXFileReference section */
 		16D900BB0E809F697BE24E44 /* Pods-Fuela.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fuela.release.xcconfig"; path = "Target Support Files/Pods-Fuela/Pods-Fuela.release.xcconfig"; sourceTree = "<group>"; };
+		1844968226DCE8420029DAA6 /* Rewards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rewards.swift; sourceTree = "<group>"; };
+		1851523226B9648600C5C7F2 /* FuelStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelStation.swift; sourceTree = "<group>"; };
 		1885E890262DA76C0011AB9D /* Fuela-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fuela-Bridging-Header.h"; sourceTree = "<group>"; };
+		18B78D5726B7BCD200367288 /* CardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsViewController.swift; sourceTree = "<group>"; };
+		18B78D5C26B8079F00367288 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		5B013B3224EEA11B008F2C25 /* AlertWithOkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertWithOkView.xib; sourceTree = "<group>"; };
 		5B013B3424EEA16B008F2C25 /* AlertWithOkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWithOkView.swift; sourceTree = "<group>"; };
 		5B0F861024E14B7F00195951 /* Terms&ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Terms&ConditionsViewController.swift"; sourceTree = "<group>"; };
@@ -274,12 +282,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1844968126DCE8240029DAA6 /* Rewards */ = {
+			isa = PBXGroup;
+			children = (
+				1844968226DCE8420029DAA6 /* Rewards.swift */,
+			);
+			path = Rewards;
+			sourceTree = "<group>";
+		};
+		1851523126B9645D00C5C7F2 /* Fuel Station */ = {
+			isa = PBXGroup;
+			children = (
+				1851523226B9648600C5C7F2 /* FuelStation.swift */,
+			);
+			path = "Fuel Station";
+			sourceTree = "<group>";
+		};
 		1885E88F262DA7350011AB9D /* Bridzing Header */ = {
 			isa = PBXGroup;
 			children = (
 				1885E890262DA76C0011AB9D /* Fuela-Bridging-Header.h */,
 			);
 			path = "Bridzing Header";
+			sourceTree = "<group>";
+		};
+		18B78D5626B7BCB400367288 /* Card Details */ = {
+			isa = PBXGroup;
+			children = (
+				18B78D5726B7BCD200367288 /* CardDetailsViewController.swift */,
+			);
+			path = "Card Details";
+			sourceTree = "<group>";
+		};
+		18B78D5B26B8076400367288 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				18B78D5C26B8079F00367288 /* Transaction.swift */,
+			);
+			path = Transactions;
 			sourceTree = "<group>";
 		};
 		4BFC135D3F340D3C6F88453F /* Frameworks */ = {
@@ -344,6 +384,9 @@
 		5B1D0F3924E5093F0010B9D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1844968126DCE8240029DAA6 /* Rewards */,
+				1851523126B9645D00C5C7F2 /* Fuel Station */,
+				18B78D5B26B8076400367288 /* Transactions */,
 				5BE3220424EE7E01008725A9 /* Quotation */,
 				5B7A0C4924E69451006C5DF3 /* FAQ */,
 				5BAFF56F24E68D2B00C2157F /* Bank Details */,
@@ -605,6 +648,7 @@
 				5BAF5CB624DD1159009A42D1 /* Tab bar */,
 				5B6F6C5E24DC2CE700D2C48F /* Account Verification */,
 				5B6F6C5B24DC168400D2C48F /* Income Details */,
+				18B78D5626B7BCB400367288 /* Card Details */,
 				5B6F6C5824DC133400D2C48F /* Work Details */,
 				5BE157F224DBF2D000F1F678 /* Banking Details */,
 				5BE157F724DBF30100F1F678 /* Forgot Password */,
@@ -1067,6 +1111,7 @@
 				5B9E4A8624DBDBBA00990F59 /* Frameworks */,
 				5B9E4A8724DBDBBA00990F59 /* Resources */,
 				7895C40E37D564EB55433915 /* [CP] Embed Pods Frameworks */,
+				A073F53828D5D703A73B1704 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1198,6 +1243,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A073F53828D5D703A73B1704 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fuela/Pods-Fuela-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fuela/Pods-Fuela-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fuela/Pods-Fuela-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1213,6 +1275,7 @@
 				5B9E4AE224DBDC5B00990F59 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				5BD0276324E124CA000DB89D /* RecentFuelaPayViewController.swift in Sources */,
 				5BAF5CBA24DD11B6009A42D1 /* HomeViewController.swift in Sources */,
+				1844968326DCE8420029DAA6 /* Rewards.swift in Sources */,
 				5B7A0C4824E69446006C5DF3 /* FAQ.swift in Sources */,
 				5B9E4AE824DBDC5B00990F59 /* YBTextPicker.swift in Sources */,
 				5B5A67A724E28D380008D260 /* PayViewController.swift in Sources */,
@@ -1254,6 +1317,7 @@
 				5B9E4ADF24DBDC5B00990F59 /* SkyFloatingLabelTextField.swift in Sources */,
 				5B6D8FAF24E2B745009104FA /* OptionAlertView.swift in Sources */,
 				5B6F6C5A24DC134800D2C48F /* WorkDetailsViewController.swift in Sources */,
+				18B78D5826B7BCD200367288 /* CardDetailsViewController.swift in Sources */,
 				5BE157F424DBF2EF00F1F678 /* BankingDetailsViewController.swift in Sources */,
 				5B6F6C5D24DC169F00D2C48F /* IncomeDetailsViewController.swift in Sources */,
 				5B9E4B0624DBDC5B00990F59 /* Validation.swift in Sources */,
@@ -1278,6 +1342,7 @@
 				5B9E4AE524DBDC5B00990F59 /* YBTextPickerDataModel.swift in Sources */,
 				5B6F6C6624DC328300D2C48F /* QuotationViewController.swift in Sources */,
 				5B6D8FB224E2BD39009104FA /* AlertView.swift in Sources */,
+				18B78D5D26B8079F00367288 /* Transaction.swift in Sources */,
 				5BD6675624E15E7A00746EB9 /* ContactUsViewController.swift in Sources */,
 				5B45666224E3BCF6004BF7CB /* AccountHeaderView.swift in Sources */,
 				5B9E4AFF24DBDC5B00990F59 /* StringExtension.swift in Sources */,
@@ -1285,6 +1350,7 @@
 				5BD386C024E26C4B00FD90E3 /* StationTableViewCell.swift in Sources */,
 				5B9E4AEE24DBDC5B00990F59 /* Constant.swift in Sources */,
 				5BE3220624EE7E10008725A9 /* Quotation.swift in Sources */,
+				1851523326B9648600C5C7F2 /* FuelStation.swift in Sources */,
 				5BE157FA24DBF31D00F1F678 /* SignUpViewController.swift in Sources */,
 				5B24462824E2A09100CB8915 /* PaidSuccessView.swift in Sources */,
 				5B9E4AFB24DBDC5B00990F59 /* WebAPI.swift in Sources */,

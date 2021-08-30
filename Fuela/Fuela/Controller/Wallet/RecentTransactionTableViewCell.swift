@@ -9,6 +9,13 @@
 import UIKit
 
 class RecentTransactionTableViewCell: UITableViewCell {
+    
+    //MARK:- Outlets
+    @IBOutlet weak var transactionDateLabel: UILabel!
+    @IBOutlet weak var transactionDescLabel: UILabel!
+    @IBOutlet weak var transactionTimeLabel: UILabel!
+    @IBOutlet weak var transactionAmountLabel: UILabel!
+    @IBOutlet weak var closingBalanceLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,4 +28,13 @@ class RecentTransactionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    var transaction: Transaction! {
+        didSet {
+            self.transactionAmountLabel.text = transaction.transactionAmount
+            self.transactionDescLabel.text   = transaction.transactionDescription
+            self.closingBalanceLabel.text    = transaction.card_balance
+            self.transactionTimeLabel.text   = transaction.transactionDate.convertDateFormat(currentFormat: "dd/MM/yyyy hh:mm:ss", newFormat: "hh:mm a")
+            self.transactionDateLabel.text   = transaction.transactionDate.convertDateFormat(currentFormat: "dd/MM/yyyy HH:mm:ss", newFormat: "dd MMM yyyy")
+        }
+    }
 }

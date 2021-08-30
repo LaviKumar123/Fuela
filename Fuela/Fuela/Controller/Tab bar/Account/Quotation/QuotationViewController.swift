@@ -14,6 +14,7 @@ class QuotationViewController: UIViewController {
     @IBOutlet weak var creditAmountLabel  : UILabel!
     @IBOutlet weak var intrerestRateLabel : UILabel!
     @IBOutlet weak var returnAmountLabel  : UILabel!
+    @IBOutlet weak var descriptionLabel   : UILabel!
     @IBOutlet weak var scrollView         : UIScrollView!
     
     //MARK:- Variable
@@ -36,6 +37,9 @@ class QuotationViewController: UIViewController {
         self.creditAmountLabel.text = "R \(quotation.adminValue!)"
         self.intrerestRateLabel.text = "\(quotation.interestRate!)%"
         self.returnAmountLabel.text = "R \(quotation.userDemand!)"
+        
+        self.descriptionLabel.text = "You Qualify for R \(quotation.adminValue!) and Your Requested Credit-R \(quotation.userDemand!) was Approved"
+            
         self.scrollView.isHidden = false
     }
     
@@ -47,10 +51,10 @@ class QuotationViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func denyButtonTapped(_ sender: UIButton) {
-        self.requestToUpdateStatus("rejected")
+        self.requestToUpdateStatus("Reject")
     }
     @IBAction func acceptButtonTapped(_ sender: UIButton) {
-        self.requestToUpdateStatus("accepted")
+        self.requestToUpdateStatus("Accept")
         
     }
 }
@@ -108,14 +112,14 @@ extension QuotationViewController {
     func requestToUpdateStatus(_ status: String) {
         let param = [
                         "user_id": AppUser.shared.id!,
-                        "key":status
+                        "status":status
                     ]
         
         print(param)
         
         Indicator.shared.startAnimating(self.view)
         
-        WebAPI.requestToPostBodyWithHeader(URLConstant.quotation, param as [String : AnyObject], header: [:])  { (response, isSuccess) in
+        WebAPI.requestToPostBodyWithHeader(URLConstant.quatationStatus, param as [String : AnyObject], header: [:])  { (response, isSuccess) in
             
             Indicator.shared.stopAnimating()
             
@@ -124,16 +128,18 @@ extension QuotationViewController {
             if isSuccess {
                 
                 if (response as! [String:Any])["result"] as! Int == 1 {
-                    if let data = (response as! [String:Any])["data"] as? [String:Any] {
-                        
-                        let archiveData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
-                        UserDefaults.standard.set(archiveData, forKey: "Loggin User")
-                        
-                        _ = AppUser(data)
-                        
-                        let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier:  "TabBarViewController") as! TabBarViewController
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
+                    let message = (response as! [String:Any])["msg"] as? String ?? ""
+                    AlertView.show(self, image: #imageLiteral(resourceName: "Account verification"), message: message)
+//                    if let data = (response as! [String:Any])["data"] as? [String:Any] {
+//
+//                        let archiveData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
+//                        UserDefaults.standard.set(archiveData, forKey: "Loggin User")
+//
+//                        _ = AppUser(data)
+//
+//                        let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier:  "TabBarViewController") as! TabBarViewController
+//                        self.navigationController?.pushViewController(vc, animated: true)
+//                    }
                 }else {
                     let message = (response as! [String:Any])["msg"] as? String ?? ""
                     AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)

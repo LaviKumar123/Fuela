@@ -16,13 +16,14 @@ class ProfileViewController: UIViewController {
     
     //MARK:- Varaiables
     let imagePicker = ImagePicker()
-    var titleArr = ["Personal Details", "Work Details", "Income Details", "Banking Details"]
+    var titleArr = ["Personal Details", "Work Details", "Income Details", "Banking Details","Card Details"]
     
     enum Detail: String {
        case Personal = "Personal Details"
-       case Work = "Work Details"
-       case Income = "Income Details"
-       case Banking = "Banking Details"
+       case Work     = "Work Details"
+       case Income   = "Income Details"
+       case Banking  = "Banking Details"
+       case Card     = "Card Details"
     }
 
     //MARK:- Controller Life Cycle
@@ -30,7 +31,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
     
     func dataSetup() {
         if let appUser = AppUser.shared {
-            if let url = URL(string: appUser.profileURL) {
+            if let url = URL(string:appUser.profileURL) {
                 self.userImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"), options: .continueInBackground, completed: nil)
             }
         }
@@ -79,7 +79,7 @@ extension ProfileViewController: ImagePickerDelegate{
 //MARK:- Table View Delegate And Data Source
 extension ProfileViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.titleArr.count
+        return (AppUser.shared.isCardAdded) ? self.titleArr.count : (self.titleArr.count - 1)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -116,6 +116,10 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource {
         case .Banking:
             let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "BankingDetailsViewController") as! BankingDetailsViewController
             vc.isForUpdate = true
+            self.navigationController?.pushViewController(vc, animated: true)
+            break;
+        case .Card:
+            let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier: "CardDetailsViewController") as! CardDetailsViewController
             self.navigationController?.pushViewController(vc, animated: true)
             break;
         default:

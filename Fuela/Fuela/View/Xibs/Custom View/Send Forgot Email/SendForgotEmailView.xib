@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -40,7 +42,7 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPO-Vr-MHZ">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPO-Vr-MHZ">
                             <rect key="frame" x="60" y="194.5" width="200" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="XH7-8R-VC9"/>
@@ -66,7 +68,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="lPO-Vr-MHZ" firstAttribute="centerX" secondItem="db1-j5-6gv" secondAttribute="centerX" id="04z-Su-Yl8"/>
                         <constraint firstItem="YQA-UP-LKa" firstAttribute="top" secondItem="pfL-Ep-HKW" secondAttribute="bottom" constant="12" id="09n-Sn-G3R"/>
@@ -101,14 +103,15 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="7Vt-7j-SN5"/>
             <color key="backgroundColor" white="0.33333333329999998" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="db1-j5-6gv" firstAttribute="centerX" secondItem="UcQ-5n-fqu" secondAttribute="centerX" id="M5u-0P-Jhk"/>
                 <constraint firstItem="db1-j5-6gv" firstAttribute="centerY" secondItem="UcQ-5n-fqu" secondAttribute="centerY" id="dWb-iS-zrv"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="7Vt-7j-SN5"/>
             <connections>
                 <outlet property="contentView" destination="db1-j5-6gv" id="UJH-zl-ycV"/>
+                <outlet property="messageLabel" destination="YQA-UP-LKa" id="hsn-Cx-MsL"/>
                 <outlet property="titleLabel" destination="pfL-Ep-HKW" id="fs9-QS-d1a"/>
             </connections>
             <point key="canvasLocation" x="132" y="121"/>
@@ -116,5 +119,8 @@
     </objects>
     <resources>
         <image name="verify email" width="61" height="61"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

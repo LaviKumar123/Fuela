@@ -33,7 +33,7 @@ struct WorkDetail {
     
     var experienceYear: String! {
         get {
-            return self.data["experience_year"] as? String ?? ""
+            return self.data["experience"] as? String ?? ""
         }
     }
     var experienceMonth: String! {

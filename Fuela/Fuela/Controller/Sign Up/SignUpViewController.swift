@@ -27,13 +27,17 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confPasswordTextField : UITextField!
     @IBOutlet weak var userImageView         : UIImageView!
     @IBOutlet weak var cameraButton          : UIButton!
-    @IBOutlet weak var countryCodeButton     : UIButton!
+    @IBOutlet weak var countryCodeLabel      : UILabel!
+    @IBOutlet weak var countryFlagImageView  : UIImageView!
     
     //MARK:- Image Picker
     var imagePicker         = ImagePicker()
     var isImagePicked       = false
     var countryCode         = "+27"
     var currentValue: String = ""
+    var selectedGender       = ""
+    var isUpdated = false
+    var appUser : AppUser?
     private var activeElement: String?
 
     //MARK:- Controller Life Cycle
@@ -45,8 +49,11 @@ class SignUpViewController: UIViewController {
         
         let datePickerView:UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePicker.Mode.date
+        datePickerView.maximumDate = Date()
         self.dobTextField.inputView = datePickerView
         datePickerView.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
+        
+        self.countryFlagImageView.image = CountryManager.shared.country(withDigitCode: "+27")?.flag
     }
 
     //MARK:- Button Action
@@ -56,7 +63,12 @@ class SignUpViewController: UIViewController {
     
     @IBAction func nextButtonTapped(_ sender: UIButton) {
         if self.isValidEntries() {
-            self.requestToSignUp()
+            if (appUser != nil) && self.isUpdated{
+                let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier:  "WorkDetailsViewController") as! WorkDetailsViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                self.requestToSignUp()
+            }
         }
     }
     
@@ -76,12 +88,23 @@ class SignUpViewController: UIViewController {
     @IBAction func countryCodeButtonTapped(_ sender: UIButton) {
         
         let countryController = CountryPickerController.presentController(on: self) { (country) in
-//            self.countryImageView.image = country.flag
-            self.countryCodeButton.setTitle(country.dialingCode, for: .normal)
             self.countryCode = country.dialingCode!
+            self.countryCodeLabel.text  = self.countryCode
+            let flag = country.flag
+            self.countryFlagImageView.image = flag
         }
         
         countryController.detailColor = UIColor.red
+    }
+    
+    @IBAction func genderButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.selectGender(self.genderTextField)
+    }
+    
+    @IBAction func idTypeButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.selectIDType(self.idTypeTextField)
     }
     
     //TODO:- Date Picker
@@ -101,14 +124,6 @@ class SignUpViewController: UIViewController {
 
 //MARK:- Text Field Delegate
 extension SignUpViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if (textField == self.genderTextField) {
-            textField.resignFirstResponder()
-            self.selectGender(textField)
-        }else {
-            self.selectIDType(textField)
-        }
-    }
     
     //TODO:- State Picker
     func selectIDType(_ sender: UITextField) {
@@ -150,7 +165,9 @@ extension SignUpViewController: UITextFieldDelegate {
         
         picker.leftPadding = 20
         picker.rightPadding = 20
-        picker.height = 150
+        picker.height = 200
+        picker.preSelectedValues = [sender.text!]
+        picker.setupLayout()
         picker.show(withAnimation: .FromBottom)
     }
     
@@ -182,6 +199,7 @@ extension SignUpViewController: UITextFieldDelegate {
                                         if let selectedValue = selectedValues.first{
                                             sender.text = selectedValue
                                             sender.resignFirstResponder()
+                                            self.selectedGender = (selectedValue == "Male") ? "M" : "F"
                                         }else{
                                         }
                                        },
@@ -190,9 +208,12 @@ extension SignUpViewController: UITextFieldDelegate {
                                        }
         )
         
-        picker.leftPadding = 20
+        picker.preSelectedValues = (self.selectedGender == "M") ? ["Male"] : ["Female"]
+        picker.leftPadding  = 20
         picker.rightPadding = 20
-        picker.height = 150
+        picker.height       = 200
+        picker.preSelectedValues = [sender.text!]
+        picker.setupLayout()
         picker.show(withAnimation: .FromBottom)
     }
 }
@@ -201,7 +222,6 @@ extension SignUpViewController: UITextFieldDelegate {
 extension SignUpViewController: ImagePickerDelegate {
     func didFinishPickingImage(_ info: AnyObject?) {
         guard (info != nil) else {return}
-        
         if let pickedImage = info![UIImagePickerController.InfoKey.editedImage] as? UIImage{
             self.userImageView.image = pickedImage
         }else if let pickedImage = info![UIImagePickerController.InfoKey.originalImage] as? UIImage {
@@ -221,9 +241,9 @@ extension SignUpViewController {
         var errorMessage = ""
         
         if self.fullNameTextField.text!.isEmpty {
-            errorMessage = "Please enter full name."
+            errorMessage = "Please enter first name."
         }else if !Validation.isValidName(name: self.fullNameTextField.text!){
-            errorMessage = "Please enter valid full name."
+            errorMessage = "Please enter valid first name."
         }else if self.surnameTextField.text!.isEmpty {
             errorMessage = "Please enter surname."
         }else if !Validation.isValidName(name: self.surnameTextField.text!){
@@ -247,10 +267,10 @@ extension SignUpViewController {
             errorMessage = "Please enter id number."
         }else  if self.addressTextField.text!.isEmpty {
             errorMessage = "Please enter address."
-        }else  if self.address2TextField.text!.isEmpty {
-            errorMessage = "Please enter address 2."
+//        }else  if self.address2TextField.text!.isEmpty {
+//            errorMessage = "Please enter address 2."
         }else  if self.pinCodeTextField.text!.isEmpty {
-            errorMessage = "Please enter pin code."
+            errorMessage = "Please enter zip code."
         }else if self.passwordTextField.text!.isEmpty {
             errorMessage = "Please enter password."
         }else if !Validation.isPwdLength(password: self.passwordTextField.text!)  {
@@ -276,7 +296,7 @@ extension SignUpViewController {
             "full_name"         : self.fullNameTextField.text!,
             "surname"           : self.surnameTextField.text!,
             "email"             : self.emailTextField.text!,
-            "gender"            : self.genderTextField.text!,
+            "gender"            : self.selectedGender,
             "dob"               : self.dobTextField.text!,
             "phone"             : self.phoneTextField.text!,
             "id_type"           : self.idTypeTextField.text!,
@@ -306,13 +326,21 @@ extension SignUpViewController {
                 if (response as! [String:Any])["result"] as! Int == 1 {
                     if let data = (response as! [String:Any])["data"] as? [String:Any] {
                         
-                        let appUser = AppUser(data)
+                        self.appUser = AppUser(data)
                         let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier:  "WorkDetailsViewController") as! WorkDetailsViewController
+                        vc.isFromRegistration = true
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }else {
-                    let message = (response as! [String:Any])["msg"] as? String ?? ""
-                    AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+                    if let errors = (response as! [String:Any])["errors"] as? [String:Any] {
+                        for (key,value) in errors {
+                            AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: value as! String)
+                            return
+                        }
+                    }else {
+                        let message = (response as! [String:Any])["msg"] as? String ?? ""
+                        AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+                    }
                 }
             }else {
                 let message = (response as! [String:Any])["Error"] as? String ?? ""

@@ -254,7 +254,10 @@ class WebAPI {
                 postData.append("&\(key)=\(value)".data(using: String.Encoding.utf8)!)
             }
         }
-        let url = URLConstant.baseURL + urlString
+        var url = URLConstant.baseURL + urlString
+        if urlString.contains("http") {
+            url = urlString
+        }
         print(url)
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
@@ -268,10 +271,10 @@ class WebAPI {
                     if let json = response.result.value {
                         completion(json as AnyObject, true)
                     }else {
-                        
                         completion(["Error" : response.error?.localizedDescription] as AnyObject, false)
                     }
                 }else {
+                    completion(["Error" : response.error?.localizedDescription] as AnyObject, false)
                     self.gotToLogin()
                 }
             }else {
@@ -281,6 +284,7 @@ class WebAPI {
     }
     
     class func requestToPostSOAPApiWithHeader(_ urlString: String,_ params: Any?, header: [String:Any],completion: @escaping(_ receivedData: AnyObject, _ isSuccess: Bool)-> Void) {
+        
         let postData = NSMutableData()
         
        
@@ -350,29 +354,80 @@ class WebAPI {
         }
     }
     
-    class func requestToPostWithoutBaseURL(_ urlString : String, params getParams: [String : AnyObject], completion: @escaping(_ receivedData: AnyObject, _ isSuccess : Bool)-> Void) {
+    class func requestWithoutBaseURL(_ urlString : String,method: HTTPMethod,header: [String:String], params getParams: [String : AnyObject], completion: @escaping(_ receivedData: AnyObject, _ isSuccess : Bool)-> Void) {
         
-        let url = urlString
+//        var url = urlString
+//
+        print(urlString)
         
-        print(url)
+        let url = URL(string: urlString as String)
+        var request = URLRequest(url: url!)
+        request.httpMethod = method.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.allHTTPHeaderFields = header
+        if getParams.count > 0 {
+            let data = try! JSONSerialization.data(withJSONObject: getParams, options: JSONSerialization.WritingOptions.prettyPrinted)
+
+            let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+            if let json = json {
+                print(json)
+            }
+            request.httpBody = json!.data(using: String.Encoding.utf8.rawValue)
+        }
         
-        Alamofire.request(url, method: .get, parameters: getParams as Parameters, encoding: JSONEncoding.default).responseJSON { response in
-            
-            if response.response != nil {
-                if "\(response.result)" != "FAILURE" {
-                    if let json = response.result.value {
-                        completion(json as AnyObject, true)
+        let alamoRequest = Alamofire.request(request as URLRequestConvertible)
+        alamoRequest.validate(statusCode: 200..<300)
+        alamoRequest.responseString { response in
+
+            switch response.result {
+                case .success:
+                    if "\(response.result)" != "FAILURE" {
+                        if let json = response.result.value {
+                            if let data = WebAPI.convertToDictionary(text: json) {
+                                completion(data as AnyObject, true)
+                            }else {
+                                completion(["message" : response.error?.localizedDescription] as AnyObject, false)
+                            }
+                        }else {
+                            completion(["message" : response.error?.localizedDescription] as AnyObject, false)
+                        }
                     }else {
-                        
-                        completion(["Error" : response.error?.localizedDescription] as AnyObject, false)
+                        completion(["message" : response.error?.localizedDescription] as AnyObject, false)
+                        self.gotToLogin()
                     }
-                }else {
-                    self.gotToLogin()
-                }
-            }else {
-                completion(["Error" : response.error?.localizedDescription] as AnyObject, false)
+                case .failure(let error):
+                    completion(["Error" : error.localizedDescription] as AnyObject, false)
             }
         }
+        
+//        Alamofire.request(url, method: method,parameters: getParams as Parameters, encoding: JSONEncoding.default, headers: (header as! HTTPHeaders)).responseJSON { response in
+//
+//            if response.response != nil {
+//                if "\(response.result)" != "FAILURE" {
+//                    if let json = response.result.value {
+//                        completion(json as AnyObject, true)
+//                    }else {
+//                        completion(["Error" : response.error?.localizedDescription] as AnyObject, false)
+//                    }
+//                }else {
+//                    completion(["Error" : response.error?.localizedDescription] as AnyObject, false)
+//                    self.gotToLogin()
+//                }
+//            }else {
+//                completion(["Error" : response.error?.localizedDescription] as AnyObject, false)
+//            }
+//        }
+    }
+    
+    class func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
     
     class func gotToLogin(){

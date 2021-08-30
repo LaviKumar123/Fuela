@@ -12,6 +12,7 @@ class SendForgotEmailView: UIView {
 
     //MARK:- Outlet
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     
     //MARK:- Variables
@@ -24,6 +25,7 @@ class SendForgotEmailView: UIView {
         SendForgotEmailView.containerView.frame = owner.view.frame
         
         SendForgotEmailView.containerView.titleLabel.text = title
+        SendForgotEmailView.containerView.messageLabel.text = message
         
         owner.view.addSubview(SendForgotEmailView.containerView)
         

@@ -22,15 +22,16 @@ class BankingDetailsViewController: UIViewController {
     @IBOutlet weak var nextButtton      : UIButton!
     
     //MARK:- Variables
+    var isFromRegistration = false
     var isForUpdate = false
-    var accountTypes = ["No Known", "Current", "Saving", "Transmission", "Bond", "Credit", "Subscription Share"]
+    var accountTypes = ["No Known", "Current", "Saving", "Transmission", "Bond", "Credit Card", "Subscription Share"]
+    var bankNames = ["Absa", "Capitec", "FNB","Standard Bank","African Bank","Sasfin","Investec","Discovery Bank"]
     var currentValue: String = ""
     var activeElement: String?
     var isGetJobStatus = false
     var isTransectionCompleted = false
-    var selectedAccountTypeIndex = -1
     
-    //MARK:- Controller Life Cycle
+    //MARK:- Controller Life Cycle 
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,19 +66,30 @@ class BankingDetailsViewController: UIViewController {
     @IBAction func nextButtonTapped(_ sender: UIButton) {
         if self.isValidEntries() {
             self.requestToSubmitDetails()
-            self.requestToCompuscanAvsService(AppUser.shared.idNumber, surname: AppUser.shared.surname, bankAccount: self.accountNumberTextField.text!, bankAccountType: self.selectedAccountTypeIndex, branchCode: self.branchCodeTextField.text!)
         }
     }
     
     @IBAction func updateButtonTapped(_ sender: UIButton) {
         if self.isValidEntries() {
-//            self.requestToSubmitDetails()
-            self.requestToCompuscanAvsService(AppUser.shared.idNumber, surname: AppUser.shared.surname, bankAccount: self.accountNumberTextField.text!, bankAccountType: self.selectedAccountTypeIndex, branchCode: self.branchCodeTextField.text!)
+            self.requestToSubmitDetails()
         }
     }
     
+    @IBAction func bankNameButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
+        
+        self.selectBankName(self.bankNameTextField, stringArr: self.bankNames, title: "Select Bank Name.")
+    }
+    
+    @IBAction func accountTypeButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
+        
+        self.selectAccountType(self.accountTypeTextField, stringArr: self.accountTypes, title: "Select Account Type.")
+    }
+    
+    
     //TODO:- State Picker
-    func optionPicker(_ sender: UITextField, stringArr: [String], title: String) {
+    func selectBankName(_ sender: UITextField, stringArr: [String], title: String) {
         
         let redAppearance = YBTextPickerAppearanceManager.init(
             pickerTitle         : title,
@@ -102,7 +114,6 @@ class BankingDetailsViewController: UIViewController {
         let picker = YBTextPicker.init(with: stringArr , appearance: redAppearance,
                                        onCompletion: { (selectedIndexes, selectedValues) in
                                         if let selectedValue = selectedValues.first{
-                                            self.selectedAccountTypeIndex = selectedIndexes.first!
                                             sender.text = selectedValue
                                         }else{
                                             
@@ -117,19 +128,66 @@ class BankingDetailsViewController: UIViewController {
         
         picker.leftPadding = 50
         picker.rightPadding = 50
-        picker.height = 250
+        picker.height = 400
+        picker.preSelectedValues = [sender.text!]
+        picker.setupLayout()
+        picker.show(withAnimation: .FromBottom)
+    }
+    
+    func selectAccountType(_ sender: UITextField, stringArr: [String], title: String) {
+        
+        let redAppearance = YBTextPickerAppearanceManager.init(
+            pickerTitle         : title,
+            titleFont           : UIFont.boldSystemFont(ofSize: 16),
+            titleTextColor      : .white,
+            titleBackground     : sender.backgroundColor,
+            searchBarFont       : UIFont.systemFont(ofSize: 16),
+            searchBarPlaceholder: title,
+            closeButtonTitle    : "Cancel",
+            closeButtonColor    : .darkGray,
+            closeButtonFont     : UIFont.systemFont(ofSize: 16),
+            doneButtonTitle     : "Done",
+            doneButtonColor     : sender.backgroundColor,
+            doneButtonFont      : UIFont.boldSystemFont(ofSize: 16),
+            checkMarkPosition   : .Right,
+//            itemCheckedImage    : UIImage(named:"Graphics - Navbar & Toolbar Icons - White - Info"),
+//            itemUncheckedImage  : UIImage(named:"Ellipse 29"),
+            itemColor           : .black,
+            itemFont            : UIFont.systemFont(ofSize: 20)
+        )
+        
+        let picker = YBTextPicker.init(with: stringArr , appearance: redAppearance,
+                                       onCompletion: { (selectedIndexes, selectedValues) in
+                                        if let selectedValue = selectedValues.first{
+                                            sender.text = selectedValue
+                                        }else{
+                                            
+                                        }
+                                        sender.resignFirstResponder()
+                                       },
+                                       onCancel: {
+                                        print("Cancelled")
+                                        sender.resignFirstResponder()
+                                       }
+        )
+        
+        picker.leftPadding = 50
+        picker.rightPadding = 50
+        picker.height = 400
+        picker.preSelectedValues = [sender.text!]
+        picker.setupLayout()
         picker.show(withAnimation: .FromBottom)
     }
 }
 
 //MARK:- Text Field Delegate
-extension BankingDetailsViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == self.accountTypeTextField {
-            self.optionPicker(textField, stringArr: self.accountTypes, title: "Select Account Type.")
-        }
-    }
-}
+//extension BankingDetailsViewController: UITextFieldDelegate {
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        if textField == self.accountTypeTextField {
+//            self.optionPicker(textField, stringArr: self.accountTypes, title: "Select Account Type.")
+//        }
+//    }
+//}
 
 //MARK:- APIs
 extension BankingDetailsViewController {
@@ -144,7 +202,7 @@ extension BankingDetailsViewController {
         }else  if self.bankNameTextField.text!.isEmpty {
             errorMessage = "Please enter bank name."
         }else  if self.accountTypeTextField.text!.isEmpty {
-            errorMessage = "Please enter account type."
+            errorMessage = "Please select account type."
         }else  if self.accountNumberTextField.text!.isEmpty {
             errorMessage = "Please enter account number."
         }else  if self.branchCodeTextField.text!.isEmpty {
@@ -199,8 +257,9 @@ extension BankingDetailsViewController {
 //                                let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier:  "CreditRequestViewController") as! CreditRequestViewController
 //                                self.navigationController?.pushViewController(vc, animated: true)
 //                                let appUser = AppUser(data)
-                                let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier: "AccountVerificationViewController") as! AccountVerificationViewController
-                                self.navigationController!.pushViewController(vc, animated: true)
+                                let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier:  "CreditRequestViewController") as! CreditRequestViewController
+                                vc.isFromRegistration = self.isFromRegistration
+                                self.navigationController?.pushViewController(vc, animated: true)
                             }
                         }
                     }

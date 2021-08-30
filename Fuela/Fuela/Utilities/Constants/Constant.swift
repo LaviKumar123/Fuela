@@ -17,6 +17,8 @@ let ACCOUNT_STORYBOARD = UIStoryboard(name: "Account", bundle: nil)
 let APP_DELEGATE    = UIApplication.shared.delegate as! AppDelegate
 let SCENE_DELEGATE  = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
 
+let MAP_API_KEY = "AIzaSyBWGnEZ9FPPQ0EpsyIFveyWz1b0pMzz7jU"
+
 let WINDOW_WIDTH    = UIScreen.main.bounds.width
 let WINDOW_HEIGHT   = UIScreen.main.bounds.height
 

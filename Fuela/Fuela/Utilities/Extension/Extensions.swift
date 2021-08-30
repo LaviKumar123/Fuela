@@ -714,18 +714,22 @@ extension String {
    }
    
    
-   func convertDateFormat(currentFormat: String, newFormat: String)->String {
-      
-      let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = currentFormat
-      
-      let dateObj = dateFormatter.date(from: self)
-      
-      dateFormatter.dateFormat = newFormat
-      print("Dateobj: \(dateFormatter.string(from: dateObj!))")
-      
-      return "\(dateFormatter.string(from: dateObj!))"
-   }
+    func convertDateFormat(currentFormat: String, newFormat: String)->String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = currentFormat
+        
+        let dateObj = dateFormatter.date(from: self)
+        
+        if dateObj == nil {
+            return ""
+        }
+        
+        dateFormatter.dateFormat = newFormat
+        print("Dateobj: \(dateFormatter.string(from: dateObj!))")
+        
+        return "\(dateFormatter.string(from: dateObj!))"
+    }
 }
 
 

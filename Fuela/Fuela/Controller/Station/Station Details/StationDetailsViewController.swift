@@ -13,6 +13,7 @@ class StationDetailsViewController: UIViewController {
     @IBOutlet weak var stationTableView: UITableView!
     
     //MARK:- Variable
+    var fuelStation: FuelStation!
     var banners: [UIImage] = [#imageLiteral(resourceName: "banner1"), #imageLiteral(resourceName: "banner2")]
     
     //MARK:- Controller Life Cycle
@@ -26,7 +27,7 @@ class StationDetailsViewController: UIViewController {
     func headerViewSetup() {
         let nibViews = Bundle.main.loadNibNamed("StationMapView", owner: self, options: nil)
         let stretchyHeaderView = nibViews!.first as! StationMapView
-        //        stretchyHeaderView.minimumContentHeight = 500
+        stretchyHeaderView.mapViewSetup([self.fuelStation])
         self.stationTableView.addSubview(stretchyHeaderView)
     }
     
@@ -34,6 +35,7 @@ class StationDetailsViewController: UIViewController {
     @IBAction func backButtonTapped(_ sender: UIButton) {
         self.navigationController!.popViewController(animated: true)
     }
+   
 }
 
 //MARK:- Table View Dlegate And Data Source
@@ -45,6 +47,7 @@ extension StationDetailsViewController : UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StationDetailsTableViewCell") as! StationDetailsTableViewCell
+        cell.fuelStation = self.fuelStation
         return cell
     }
     

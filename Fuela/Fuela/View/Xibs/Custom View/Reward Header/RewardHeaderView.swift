@@ -10,5 +10,16 @@ import UIKit
 import GSKStretchyHeaderView
 
 class RewardHeaderView: GSKStretchyHeaderView {
-
+    
+    @IBOutlet weak var currencyLabel: UILabel!
+    @IBOutlet weak var rewardAmountLabel: UILabel!
+    
+    
+    var reward: Reward! {
+        didSet {
+            self.currencyLabel.text = reward.currency
+            self.rewardAmountLabel.text = reward.reward_amt
+        }
+    }
+    
 }

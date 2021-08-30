@@ -69,11 +69,8 @@ extension ForgotPasswordViewController {
             if isSuccess {
                 
                 if (response as! [String:Any])["result"] as! Int == 1 {
-                    if let data = (response as! [String:Any])["data"] as? [String:Any] {
-                        
                         let message = (response as! [String:Any])["msg"] as? String ?? ""
-                        SendForgotEmailView.show(self, title: "We have sent you an email", message: "Check your email and follow instructions")
-                    }
+                        SendForgotEmailView.show(self, title: "Forgot Password", message: message)
                 }else {
                     let message = (response as! [String:Any])["msg"] as? String ?? ""
                     AlertView.show(self, image:  #imageLiteral(resourceName: "Alert for deny quotation"), message: message)

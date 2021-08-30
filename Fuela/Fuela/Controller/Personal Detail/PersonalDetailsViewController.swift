@@ -23,7 +23,8 @@ class PersonalDetailsViewController: UIViewController {
     @IBOutlet weak var addressTextField      : UITextField!
     @IBOutlet weak var address2TextField     : UITextField!
     @IBOutlet weak var pinCodeTextField      : UITextField!
-    @IBOutlet weak var countryCodeButton     : UIButton!
+    @IBOutlet weak var countryCodeLabel      : UILabel!
+    @IBOutlet weak var countryFlagImageView  : UIImageView!
     
     //MARK:- Variables
     var countryCode  = "+27"
@@ -60,9 +61,10 @@ class PersonalDetailsViewController: UIViewController {
         self.address2TextField.text = appUser.address2
         self.pinCodeTextField.text  = appUser.pincode!
         self.countryCode            = appUser.countryCode
-        self.countryCodeButton.setTitle(self.countryCode, for: .normal)
+        self.countryCodeLabel.text  = self.countryCode
+        self.countryFlagImageView.image = CountryManager.shared.country(withDigitCode: self.countryCode)?.flag
     }
-
+        
     //MARK:- Button Action
     @IBAction func backButtonTapped(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -71,10 +73,10 @@ class PersonalDetailsViewController: UIViewController {
     @IBAction func countryCodeButtonTapped(_ sender: UIButton) {
         
         let countryController = CountryPickerController.presentController(on: self) { (country) in
-            
-            //            self.countryImageView.image = country.flag
-            self.countryCodeButton.setTitle(country.dialingCode, for: .normal)
             self.countryCode = country.dialingCode!
+            self.countryCodeLabel.text  = self.countryCode
+            let flag = country.flag
+            self.countryFlagImageView.image = flag
         }
         
         countryController.detailColor = UIColor.red
@@ -84,6 +86,16 @@ class PersonalDetailsViewController: UIViewController {
         if self.isValidEntries() {
             self.requestToUpdate()
         }
+    }
+    
+    @IBAction func genderButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.selectGender(self.genderTextField)
+    }
+    
+    @IBAction func idTypeButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.selectIDType(self.idTypeTextField)
     }
     
     //TODO:- Date Picker
@@ -103,14 +115,14 @@ class PersonalDetailsViewController: UIViewController {
 
 //MARK:- Text Field Delegate
 extension PersonalDetailsViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if (textField == self.genderTextField) {
-            textField.resignFirstResponder()
-            self.selectGender(textField)
-        }else {
-            self.selectIDType(textField)
-        }
-    }
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        if (textField == self.genderTextField) {
+////            textField.resignFirstResponder()
+//            self.selectGender(textField)
+//        }else {
+//            self.selectIDType(textField)
+//        }
+//    }
     
     //TODO:- State Picker
     func selectIDType(_ sender: UITextField) {
@@ -152,7 +164,9 @@ extension PersonalDetailsViewController: UITextFieldDelegate {
         
         picker.leftPadding = 20
         picker.rightPadding = 20
-        picker.height = 150
+        picker.height = 200
+        picker.preSelectedValues = [sender.text!]
+        picker.setupLayout()
         picker.show(withAnimation: .FromBottom)
     }
     
@@ -195,7 +209,9 @@ extension PersonalDetailsViewController: UITextFieldDelegate {
         
         picker.leftPadding = 20
         picker.rightPadding = 20
-        picker.height = 150
+        picker.height = 200
+        picker.preSelectedValues = [sender.text!]
+        picker.setupLayout()
         picker.show(withAnimation: .FromBottom)
     }
 }
@@ -234,10 +250,10 @@ extension PersonalDetailsViewController {
             errorMessage = "Please enter id number."
         }else  if self.idNumberTextField.text!.isEmpty {
             errorMessage = "Please enter address."
-        }else  if self.address2TextField.text!.isEmpty {
-            errorMessage = "Please enter address 2."
+//        }else  if self.address2TextField.text!.isEmpty {
+//            errorMessage = "Please enter address 2."
         }else  if self.pinCodeTextField.text!.isEmpty {
-            errorMessage = "Please enter pin code."
+            errorMessage = "Please enter zip code."
         }else {
             return true
         }

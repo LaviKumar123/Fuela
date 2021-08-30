@@ -30,18 +30,25 @@ class TabBarViewController: UIViewController {
     var selectedIcons   : [UIImage] = [#imageLiteral(resourceName: "home red"),#imageLiteral(resourceName: "Notification Red"),#imageLiteral(resourceName: "History Red"),#imageLiteral(resourceName: "Account red")]
     var unselectedIcons : [UIImage] = [#imageLiteral(resourceName: "home grey"),#imageLiteral(resourceName: "Notification Grey"),#imageLiteral(resourceName: "History Grey"),#imageLiteral(resourceName: "Account Grey")]
     
-   
-    
     //MARK:- Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Do any additional setup after loading the view.
+        if (AppUser.shared.isUserAccepted.uppercased() == "accepted".uppercased()) {
+            self.selectedIndex = 0 //Home Section Selected
+        }else {
+            self.getPersonalDetails()
+            self.selectedIndex = 3 //Account Section Selected
+        }
+        
         self.configureViewControllers()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     func configureViewControllers() {
@@ -52,19 +59,35 @@ class TabBarViewController: UIViewController {
         self.accountViewController       = HOME_STORYBOARD.instantiateViewController(withIdentifier: "AccountViewController") as? AccountViewController
         
         self.viewControllers             = [homeViewController,notificationViewController,historyViewController,accountViewController]
-        buttons[selectedIndex].isSelected   = true
+        self.buttons[self.selectedIndex].isSelected   = true
         
-        self.barButtonTapped(buttons[selectedIndex])
+//        self.barButtonTapped(self.buttons[self.selectedIndex])
+        
+        self.configureSelectedViewController(self.buttons[self.selectedIndex])
+        self.manageSelectedButton(self.buttons[self.selectedIndex])
     }
     
     //MARK:- Button Action
     @IBAction func barButtonTapped(_ sender: UIButton) {
-        self.configureSelectedViewController(sender)
-        self.manageSelectedButton(sender)
+        if (AppUser.shared.isUserAccepted.uppercased() == "accepted".uppercased()) {
+            self.configureSelectedViewController(sender)
+            self.manageSelectedButton(sender)
+        }else {
+            if (sender.tag == 0) {
+                let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier: "AccountVerificationViewController") as! AccountVerificationViewController
+                vc.isFromHome = true
+                self.navigationController!.pushViewController(vc, animated: true)
+            }else {
+//                self.configureSelectedViewController(sender)
+//                self.manageSelectedButton(sender)
+            }
+        }
     }
     
     @IBAction func addNewButtonTapped(_ sender: UIButton) {
-        BottomPopupView.show(self)
+        if (AppUser.shared.isUserAccepted.uppercased() == "accepted".uppercased()) {
+            BottomPopupView.show(self)
+        }
     }
     
     func manageSelectedButton(_ sender: UIButton) {
@@ -81,7 +104,7 @@ class TabBarViewController: UIViewController {
     
     func configureSelectedViewController(_ sender: UIButton) {
         
-        let previousIndex = selectedIndex
+        let previousIndex = self.selectedIndex
         self.selectedIndex = sender.tag
         buttons[previousIndex].isSelected = false
         let previousVC = self.viewControllers[previousIndex]
@@ -91,7 +114,7 @@ class TabBarViewController: UIViewController {
         
         sender.isSelected = true
         
-        let vc = viewControllers[selectedIndex]
+        let vc = viewControllers[self.selectedIndex]
         
         self.addChild(vc)
         vc.view.frame = contentView.bounds
@@ -100,5 +123,50 @@ class TabBarViewController: UIViewController {
         
         self.tabBarView.superview?.bringSubviewToFront(self.tabBarView)
         self.addNewButton.superview?.bringSubviewToFront(self.addNewButton)
+    }
+}
+
+extension TabBarViewController {
+    func getPersonalDetails() {
+        let param = [
+            "user_id"   : "\(AppUser.shared.id!)"
+        ]
+        
+        print(param)
+        
+        Indicator.shared.startAnimating(self.view)
+        
+        WebAPI.requestToPostWithDataWithoutHeader(URLConstant.getPersonalDetails, params: param, fileData: nil, fileKey: "", fileName: "") { (response, isSuccess) in
+            
+            Indicator.shared.stopAnimating()
+            
+            print(response)
+            
+            if isSuccess {
+                
+                if (response as! [String:Any])["result"] as! Int == 1 {
+                    if let data = (response as! [String:Any])["data"] as? [String:Any] {
+                        
+                        let appUser = AppUser(data)
+                        
+                        let archiveData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
+                        UserDefaults.standard.set(archiveData, forKey: "Loggin User")
+                        
+                        if appUser.isUserAccepted == "accepted" {
+                            let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier:  "TabBarViewController") as! TabBarViewController
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }else {
+                            
+                        }
+                    }
+                }else {
+                    let message = (response as! [String:Any])["msg"] as? String ?? ""
+                    AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+                }
+            }else {
+                let message = (response as! [String:Any])["Error"] as? String ?? ""
+                AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+            }
+        }
     }
 }

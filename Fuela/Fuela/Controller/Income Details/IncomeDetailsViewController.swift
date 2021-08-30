@@ -24,7 +24,7 @@ class IncomeDetailsViewController: UIViewController {
     
     //MARK:- Variables
     var isForUpdate = false
-    let datePicker = UIDatePicker()
+    var isFromRegistration = false
     
     //MARK:- Controller Life Cycle
     override func viewDidLoad() {
@@ -46,6 +46,12 @@ class IncomeDetailsViewController: UIViewController {
                 self.requestToGetDetails()
             }
         }
+        
+//        let datePickerView:UIDatePicker = UIDatePicker()
+//        datePickerView.minimumDate = Date()
+//        datePickerView.datePickerMode = UIDatePicker.Mode.date
+//        self.salaryDateTextField.inputView = datePickerView
+//        datePickerView.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
     }
            
     func dataSetup(_ income: IncomeDetail) {
@@ -74,19 +80,36 @@ class IncomeDetailsViewController: UIViewController {
           self.requestToSubmitDetails()
       }
     }
-}
-
-
-//MARK:- Text Field Delegate
-extension IncomeDetailsViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        let daysArr = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
-        self.selectDay(textField, stringArr:daysArr, title: "Select Salary Date")
+    
+    @IBAction func sourceOfIncomeButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
+        let incomeSourceArr = ["Salary", "Wages", "Interest Allowance", "Self Employment"]
+        self.selectIncomeSource(self.sourceTextField, stringArr:incomeSourceArr, title: "Select Source Of Income")
     }
     
+    @IBAction func salaryDateButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
+        let daysArr = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
+        self.selectDay(self.salaryDateTextField, stringArr:daysArr, title: "Select Salary Date")
+    }
+    
+    //TODO:- Date Picker
+//    @objc func datePickerValueChanged(sender:UIDatePicker) {
+//
+//        let dateFormatter = DateFormatter()
+//
+//        dateFormatter.dateStyle = DateFormatter.Style.medium
+//
+//        dateFormatter.timeStyle = DateFormatter.Style.none
+//
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//
+//        self.salaryDateTextField.text = dateFormatter.string(from: sender.date)
+//    }
+    
     //TODO:- State Picker
-    func selectDay(_ sender: UITextField, stringArr: [String], title: String) {
-        
+    func selectIncomeSource(_ sender: UITextField, stringArr: [String], title: String) {
+
         let redAppearance = YBTextPickerAppearanceManager.init(
             pickerTitle         : title,
             titleFont           : UIFont.boldSystemFont(ofSize: 16),
@@ -106,7 +129,7 @@ extension IncomeDetailsViewController: UITextFieldDelegate {
             itemColor           : .black,
             itemFont            : UIFont.systemFont(ofSize: 20)
         )
-        
+
         let picker = YBTextPicker.init(with: stringArr , appearance: redAppearance,
                                        onCompletion: { (selectedIndexes, selectedValues) in
                                         if let selectedValue = selectedValues.first{
@@ -119,13 +142,59 @@ extension IncomeDetailsViewController: UITextFieldDelegate {
                                         print("Cancelled")
         }
         )
-        
+
+        picker.leftPadding = 70
+        picker.rightPadding = 70
+        picker.height = 300
+        picker.preSelectedValues = [sender.text!]
+        picker.setupLayout()
+        picker.show(withAnimation: .FromBottom)
+    }
+    
+    func selectDay(_ sender: UITextField, stringArr: [String], title: String) {
+
+        let redAppearance = YBTextPickerAppearanceManager.init(
+            pickerTitle         : title,
+            titleFont           : UIFont.boldSystemFont(ofSize: 16),
+            titleTextColor      : .white,
+            titleBackground     : sender.backgroundColor,
+            searchBarFont       : UIFont.systemFont(ofSize: 16),
+            searchBarPlaceholder: title,
+            closeButtonTitle    : "Cancel",
+            closeButtonColor    : .darkGray,
+            closeButtonFont     : UIFont.systemFont(ofSize: 16),
+            doneButtonTitle     : "Done",
+            doneButtonColor     : sender.backgroundColor,
+            doneButtonFont      : UIFont.boldSystemFont(ofSize: 16),
+            checkMarkPosition   : .Right,
+//            itemCheckedImage    : UIImage(named:"Graphics - Navbar & Toolbar Icons - White - Info"),
+//            itemUncheckedImage  : UIImage(named:"Ellipse 29"),
+            itemColor           : .black,
+            itemFont            : UIFont.systemFont(ofSize: 20)
+        )
+
+        let picker = YBTextPicker.init(with: stringArr , appearance: redAppearance,
+                                       onCompletion: { (selectedIndexes, selectedValues) in
+                                        if let selectedValue = selectedValues.first{
+                                            sender.text = selectedValue
+                                            sender.resignFirstResponder()
+                                        }else{
+                                        }
+        },
+                                       onCancel: {
+                                        print("Cancelled")
+        }
+        )
+
         picker.leftPadding = 100
         picker.rightPadding = 100
-        picker.height = 350
+        picker.height = 450
+        picker.preSelectedValues = [sender.text!]
+        picker.setupLayout()
         picker.show(withAnimation: .FromBottom)
     }
 }
+
 
 
 //MARK:- APIs
@@ -140,10 +209,12 @@ extension IncomeDetailsViewController {
             errorMessage = "Please enter source of income."
         }else  if self.salaryDateTextField.text!.isEmpty {
             errorMessage = "Please select salary date."
-        }else  if self.additionalIncomeTextField.text!.isEmpty {
+        }else  if self.netIncomeTextField.text!.isEmpty {
             errorMessage = "Please enter income."
+        }else  if self.additionalIncomeTextField.text!.isEmpty {
+            errorMessage = "Please enter additional income."
         }else  if self.totalIncomeTextField.text!.isEmpty {
-            errorMessage = "Please enter Additional income."
+            errorMessage = "Please enter total income."
         }else  if self.totalExpTextField.text!.isEmpty {
             errorMessage = "Please enter total expenses."
 //        }else  if self.netIncomeTextField.text!.isEmpty {
@@ -194,6 +265,7 @@ extension IncomeDetailsViewController {
                                 self.navigationController?.popViewController(animated: true)
                             }else {
                                 let vc = ACCOUNT_STORYBOARD.instantiateViewController(withIdentifier:  "BankingDetailsViewController") as! BankingDetailsViewController
+                                vc.isFromRegistration = self.isFromRegistration
                                 self.navigationController?.pushViewController(vc, animated: true)
                             }
                         }
@@ -228,7 +300,6 @@ extension IncomeDetailsViewController {
                 
                 if (response as! [String:Any])["result"] as! Int == 1 {
                     if let data = (response as! [String:Any])["data"] as? [String:Any] {
-                                                
                         let income = IncomeDetail(data)
                         self.dataSetup(income)
                     }
