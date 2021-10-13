@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     }
     
     func getRegionCode(){
-        let locale = Locale.current
+//        let locale = Locale.current
         //        print(locale.regionCode)
     }
     
@@ -55,8 +55,8 @@ class LoginViewController: UIViewController {
         
         if self.emailTextField.text!.isEmpty {
             errorMessage = "Please enter your email."
-//        }else if !Validation.isValidEmail(self.emailTextField.text!){
-//            errorMessage = "Please enter valid email."
+        }else if !Validation.isValidEmail(self.emailTextField.text!){
+            errorMessage = "Please enter valid email."
         }else if self.passwordTextField.text!.isEmpty {
             errorMessage = "Please enter password."
         }else if !Validation.isPwdLength(password: self.passwordTextField.text!)  {

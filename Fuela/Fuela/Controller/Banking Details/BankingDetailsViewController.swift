@@ -199,6 +199,8 @@ extension BankingDetailsViewController {
         
         if self.bankHolderNameTextField.text!.isEmpty {
             errorMessage = "Please enter account holder name."
+        }else if !Validation.isValidName(name: self.bankHolderNameTextField.text!){
+            errorMessage = "Account holder namme should contains only alphabets."
         }else  if self.bankNameTextField.text!.isEmpty {
             errorMessage = "Please enter bank name."
         }else  if self.accountTypeTextField.text!.isEmpty {

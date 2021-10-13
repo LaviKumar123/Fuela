@@ -211,12 +211,20 @@ extension IncomeDetailsViewController {
             errorMessage = "Please select salary date."
         }else  if self.netIncomeTextField.text!.isEmpty {
             errorMessage = "Please enter income."
+        }else if self.isZeroValue(text: self.netIncomeTextField.text!){
+            errorMessage = "Income should not be zero."
         }else  if self.additionalIncomeTextField.text!.isEmpty {
             errorMessage = "Please enter additional income."
+        }else if self.isZeroValue(text: self.additionalIncomeTextField.text!){
+            errorMessage = "Additional income should not be zero."
         }else  if self.totalIncomeTextField.text!.isEmpty {
             errorMessage = "Please enter total income."
+        }else if self.isZeroValue(text: self.additionalIncomeTextField.text!){
+            errorMessage = "Additional income should not be zero."
         }else  if self.totalExpTextField.text!.isEmpty {
             errorMessage = "Please enter total expenses."
+        }else if self.isZeroValue(text: self.totalIncomeTextField.text!){
+            errorMessage = "Total expenses should not be zero."
 //        }else  if self.netIncomeTextField.text!.isEmpty {
 //            errorMessage = "Please enter net income."
         }else {
@@ -225,6 +233,11 @@ extension IncomeDetailsViewController {
         
         AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: errorMessage)
         return false
+    }
+    
+    func isZeroValue(text: String)-> Bool {
+        let intValue = Int(text)!
+        return (intValue == 0)
     }
     
     //TODO:- Request

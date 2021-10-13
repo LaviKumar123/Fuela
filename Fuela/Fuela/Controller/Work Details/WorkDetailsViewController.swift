@@ -176,6 +176,8 @@ extension WorkDetailsViewController {
             errorMessage = "Please enter address."
         }else  if self.contactPersonTextField.text!.isEmpty {
             errorMessage = "Please enter contact person."
+        }else if !Validation.isValidName(name: self.contactPersonTextField.text!){
+            errorMessage = "Contact person should contains only alphabets."
         }else  if self.contactNumberTextField.text!.isEmpty {
             errorMessage = "Please enter contact number."
         }else if (self.contactNumberTextField.text!.length < 9) || (self.contactNumberTextField.text!.length > 9){

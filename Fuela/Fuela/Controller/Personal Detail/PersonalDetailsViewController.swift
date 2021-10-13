@@ -229,16 +229,16 @@ extension PersonalDetailsViewController {
         
         if self.fullNameTextField.text!.isEmpty {
             errorMessage = "Please enter first name."
-//        }else if !Validation.isValidName(name: self.fullNameTextField.text!){
-//            errorMessage = "Please enter valid full name."
+        }else if !Validation.isValidName(name: self.fullNameTextField.text!){
+            errorMessage = "First name should contains only alphabets."
         }else if self.surNameTextField.text!.isEmpty {
             errorMessage = "Please enter last name."
-//        }else if !Validation.isValidName(name: self.surNameTextField.text!){
-//            errorMessage = "Please enter valid last name."
+        }else if !Validation.isValidName(name: self.surNameTextField.text!){
+            errorMessage = "Last name should contains only alphabets."
         }else if self.emailTextField.text!.isEmpty {
             errorMessage = "Please enter your email."
-//        }else if !Validation.isValidEmail(self.emailTextField.text!){
-//            errorMessage = "Please enter valid email."
+        }else if !Validation.isValidEmail(self.emailTextField.text!){
+            errorMessage = "Please enter valid email."
         }else  if self.genderTextField.text!.isEmpty {
             errorMessage = "Please select your gender."
         }else  if self.dobTextField.text!.isEmpty {

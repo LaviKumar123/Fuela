@@ -65,10 +65,12 @@ extension HelpViewController {
         
         if self.nameTextField.text!.isEmpty {
             errorMessage = "Please enter name."
+        }else if !Validation.isValidName(name: self.nameTextField.text!){
+            errorMessage = "Name should contains only alphabets."
         }else if self.emailTextField.text!.isEmpty {
             errorMessage = "Please enter your email."
-//        }else if !Validation.isValidEmail(self.emailTextField.text!){
-//            errorMessage = "Please enter valid email."
+        }else if !Validation.isValidEmail(self.emailTextField.text!){
+            errorMessage = "Please enter valid email."
         }else if self.queryTextView.text!.isEmpty || (self.queryTextView.text! == "Enter query here...") {
             errorMessage = "Please enter query."
         }else {
