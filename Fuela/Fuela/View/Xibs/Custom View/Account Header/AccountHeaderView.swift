@@ -22,7 +22,7 @@ class AccountHeaderView: GSKStretchyHeaderView {
         super.layoutSubviews()
         
         if let appUser = AppUser.shared {
-            self.userNameLabel.text = appUser.fullName!
+            self.userNameLabel.text = appUser.fullName! + " " + appUser.surname!
             self.userEmailLabel.text = appUser.email!
             
             if let url = URL(string: appUser.profileURL) {

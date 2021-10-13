@@ -42,7 +42,7 @@ class RewardsViewController: UIViewController {
     }
     
     @IBAction func addToWalletButtonTapped(_ sender: UIButton) {
-        if (sender.currentTitle == "REDEEM NOW") {
+        if (sender.currentTitle == "REDEEM") {
             self.requestForRedeem()
         }
     }
@@ -89,12 +89,16 @@ extension RewardsViewController {
                     
                     self.headerViewSetup(reward)
                     
-                    if reward.button_status == true {
-                        self.redeemButton.setTitle("REDEEM NOW", for: .normal)
+                    if (reward.reward_amt == "0") {
+                        self.redeemButtonView.isHidden = true
                     }else {
-                        self.redeemButton.setTitle("TO BE REDEEM", for: .normal)
+                        self.redeemButtonView.isHidden = false
+                        if reward.button_status == true {
+                            self.redeemButton.setTitle("REDEEM", for: .normal)
+                        }else {
+                            self.redeemButton.setTitle("TO BE REDEEMED", for: .normal)
+                        }
                     }
-                    
                     self.getRewardList("")
                 }else {
                     self.headerViewSetup(nil)
@@ -140,12 +144,14 @@ extension RewardsViewController {
                         self.rewardTableView.tableFooterView = UIView()
                     }
                 }else {
-                    let message = (response as! [String:Any])["msg"] as? String ?? ""
-                    AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+//                    self.redeemButtonView.isHidden = true
+//                    let message = (response as! [String:Any])["msg"] as? String ?? ""
+//                    AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
                 }
             }else {
-                let message = (response as! [String:Any])["Error"] as? String ?? ""
-                AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+//                self.redeemButtonView.isHidden = true
+//                let message = (response as! [String:Any])["Error"] as? String ?? ""
+//                AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
             }
         }
     }

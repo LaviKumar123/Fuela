@@ -30,6 +30,8 @@ class TabBarViewController: UIViewController {
     var selectedIcons   : [UIImage] = [#imageLiteral(resourceName: "home red"),#imageLiteral(resourceName: "Notification Red"),#imageLiteral(resourceName: "History Red"),#imageLiteral(resourceName: "Account red")]
     var unselectedIcons : [UIImage] = [#imageLiteral(resourceName: "home grey"),#imageLiteral(resourceName: "Notification Grey"),#imageLiteral(resourceName: "History Grey"),#imageLiteral(resourceName: "Account Grey")]
     
+    var isFromTabBar = false
+    
     //MARK:- Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +40,15 @@ class TabBarViewController: UIViewController {
         // Do any additional setup after loading the view.
         if (AppUser.shared.isUserAccepted.uppercased() == "accepted".uppercased()) {
             self.selectedIndex = 0 //Home Section Selected
-        }else {
             self.getPersonalDetails()
+        }else {
             self.selectedIndex = 3 //Account Section Selected
+            self.getPersonalDetails()
+        }
+        
+        
+        if let fcmToken = UserDefaults.standard.value(forKey: "FCMToken") as? String{
+            self.saveFCMToken(fcmToken)
         }
         
         self.configureViewControllers()
@@ -58,7 +66,12 @@ class TabBarViewController: UIViewController {
         self.historyViewController       = HOME_STORYBOARD.instantiateViewController(withIdentifier: "HistoryViewController") as? HistoryViewController
         self.accountViewController       = HOME_STORYBOARD.instantiateViewController(withIdentifier: "AccountViewController") as? AccountViewController
         
-        self.viewControllers             = [homeViewController,notificationViewController,historyViewController,accountViewController]
+        self.viewControllers             = [
+                                                self.homeViewController,
+                                                self.notificationViewController,
+                                                self.historyViewController,
+                                                self.accountViewController
+                                            ]
         self.buttons[self.selectedIndex].isSelected   = true
         
 //        self.barButtonTapped(self.buttons[self.selectedIndex])
@@ -77,9 +90,9 @@ class TabBarViewController: UIViewController {
                 let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier: "AccountVerificationViewController") as! AccountVerificationViewController
                 vc.isFromHome = true
                 self.navigationController!.pushViewController(vc, animated: true)
-            }else {
-//                self.configureSelectedViewController(sender)
-//                self.manageSelectedButton(sender)
+            }else if (sender.tag == 1) || (sender.tag == 3){
+                self.configureSelectedViewController(sender)
+                self.manageSelectedButton(sender)
             }
         }
     }
@@ -152,11 +165,12 @@ extension TabBarViewController {
                         let archiveData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
                         UserDefaults.standard.set(archiveData, forKey: "Loggin User")
                         
-                        if appUser.isUserAccepted == "accepted" {
+                        if (appUser.isUserAccepted != "accepted") && (self.selectedIndex == 3) && !self.isFromTabBar{
                             let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier:  "TabBarViewController") as! TabBarViewController
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }else {
-                            
+                            vc.isFromTabBar = true
+                            self.navigationController?.setViewControllers([vc], animated: false)
+                        }else if (appUser.isUserAccepted == "accepted") {
+                            self.homeViewController.dataSetup()
                         }
                     }
                 }else {
@@ -166,6 +180,31 @@ extension TabBarViewController {
             }else {
                 let message = (response as! [String:Any])["Error"] as? String ?? ""
                 AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+            }
+        }
+    }
+    
+    func saveFCMToken(_ fcmToken: String) {
+        let param = [
+            "user_id": AppUser.shared.id!,
+            "firebase_token" : fcmToken,
+            "device_type" : "ios"
+        ]
+        
+        print(param)
+        
+        WebAPI.requestToPostBodyWithHeader(URLConstant.setFCMToken, param as [String : AnyObject], header: [:])  { (response, isSuccess) in
+            
+            print(response)
+            
+            if isSuccess {
+                if (response as! [String:Any])["result"] as! Int == 1{
+                    
+                }else {
+                    
+                }
+            }else {
+                
             }
         }
     }

@@ -58,7 +58,7 @@ class CreditRequestViewController: UIViewController {
     }
     
     @IBAction func repaymentButtonTapped(_ sender: UIButton) {
-        let repaymentOptions = ["3 Months", "6 Months", "12 Months Revolving"]
+        let repaymentOptions = ["3 Months Fixed", "6 Months Fixed", "12 Months Revolving"]
         self.selectOption(self.repaymentTextField, title: "Repayment Period", options: repaymentOptions)
     }
     

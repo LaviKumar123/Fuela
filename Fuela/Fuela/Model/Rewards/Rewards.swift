@@ -33,7 +33,7 @@ struct Reward {
     
     var reward_amt: String! {
         get {
-            return self.data["reward_amt"] as? String ?? ""
+            return self.data["reward_amt"] as? String ?? "0"
         }
     }
     

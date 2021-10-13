@@ -22,7 +22,7 @@ class HelpViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         if let appUser = AppUser.shared {
-            self.nameTextField.text  = appUser.fullName!
+            self.nameTextField.text  = appUser.fullName! + " " + appUser.surname!
             self.emailTextField.text = appUser.email!
         }
     }
@@ -67,8 +67,8 @@ extension HelpViewController {
             errorMessage = "Please enter name."
         }else if self.emailTextField.text!.isEmpty {
             errorMessage = "Please enter your email."
-        }else if !Validation.isValidEmail(self.emailTextField.text!){
-            errorMessage = "Please enter valid email."
+//        }else if !Validation.isValidEmail(self.emailTextField.text!){
+//            errorMessage = "Please enter valid email."
         }else if self.queryTextView.text!.isEmpty || (self.queryTextView.text! == "Enter query here...") {
             errorMessage = "Please enter query."
         }else {

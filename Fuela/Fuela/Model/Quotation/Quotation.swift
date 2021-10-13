@@ -37,6 +37,18 @@ struct Quotation {
         }
     }
     
+    var userResponse: String! {
+        get {
+            return self.data["user_response"] as? String ?? ""
+        }
+    }
+    
+    var adminStatus: String! {
+        get {
+            return self.data["admin_status"] as? String ?? ""
+        }
+    }
+    
     var id: String! {
         get {
             return self.data["id"] as? String ?? ""

@@ -16,6 +16,8 @@ target 'Fuela' do
    pod 'HTMLReader', '~> 0.9'
    pod 'GoogleMaps'
    pod 'GooglePlaces'
+   pod 'Firebase/Analytics'
+   pod 'Firebase/Messaging'
 
 
   # Pods for Fuela

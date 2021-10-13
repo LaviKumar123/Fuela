@@ -73,6 +73,12 @@ class AppUser {
         }
     }
     
+    var currency: String! {
+        get {
+            return self.data["currency"] as? String ?? ""
+        }
+    }
+    
     var step : Int! {
         get  {
             if let id = self.data["step"] as? Int {

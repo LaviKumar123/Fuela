@@ -29,9 +29,10 @@ class ContactUsViewController: UIViewController {
     
     func dataSetup(_ data: [String:Any]) {
         self.descriptionLabel.text = data["description"] as? String ?? ""
-        let phone                  = data["contact_number"] as? String ?? ""
-        let email                  = data["contact_email"] as? String ?? ""
-        self.titleArr              = [phone, email]
+        let phone                  = data["phone"] as? String ?? ""
+        let countryCode            = data["country_code"] as? String ?? ""
+        let email                  = data["general_enquiries_email"] as? String ?? ""
+        self.titleArr              = [countryCode + "-" + phone, email]
         self.contactTableView.reloadData()
     }
 

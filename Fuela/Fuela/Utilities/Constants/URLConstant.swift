@@ -37,7 +37,7 @@ class URLConstant {
     static let getBankDetails           = "getBankDetails"
     static let getCurrencyDetail        = "getCurrencyDetail"
     static let helpQuery                = "help_query"
-    static let getConatctDetail         = "get_conatct_detail"
+    static let getConatctDetail         = "fuelaContactDetails"//"get_conatct_detail"
     static let deleteUserAccount        = "delete_user_account"
     static let quotation                = "quatation"
     static let quatationStatus          = "quatationStatus"
@@ -51,6 +51,8 @@ class URLConstant {
     static let rewardBalance            = "rewardBalance"
     static let recentRewards            = "recentRewards"
     static let doRequestReedem          = "doRequestReedem"
+    static let getNotification          = "getNotification"
+    static let setFCMToken              = "setToken"
     
     //MARK:- Paycentral
     static let payCentralBaseURL        = "https://api.paycentral.co.za/"
@@ -59,4 +61,3 @@ class URLConstant {
     static let cardBalance              = "card/balance"
     static let cardStatement            = "card/cards_statement"
 }
-

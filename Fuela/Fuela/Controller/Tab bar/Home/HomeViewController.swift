@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var userNameLabel  : UILabel!
     @IBOutlet weak var userEmailLabel : UILabel!
     @IBOutlet weak var idNumberLabel  : UILabel!
+    @IBOutlet weak var idTypeLabel    : UILabel!
     @IBOutlet weak var amountLabel    : UILabel!
     
     //MARK:- Controller Life Cycle
@@ -32,10 +33,10 @@ class HomeViewController: UIViewController {
         
         guard let appUser = AppUser.shared else { return }
         
-        self.userNameLabel.text  = appUser.fullName!
+        self.userNameLabel.text  = appUser.fullName! + " " + appUser.surname!
         self.userEmailLabel.text = appUser.email!
         self.idNumberLabel.text  = appUser.idNumber!
-        //        self.amountLabel.text    = appUser.amount
+        self.idTypeLabel.text    = appUser.idType!
         
         if let url = URL(string: appUser.profileURL) {
             self.userImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"), options: .continueInBackground, completed: nil)
@@ -98,8 +99,8 @@ extension HomeViewController {
                     AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: errorMessage)
                 }
             }else {
-                let message = (response as! [String:Any])["Error"] as? String ?? ""
-                AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+//                let message = (response as! [String:Any])["Error"] as? String ?? ""
+//                AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
             }
         }
     }

@@ -30,8 +30,8 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOf-2K-leI">
-                    <rect key="frame" x="20" y="154" width="11" height="22"/>
-                    <fontDescription key="fontDescription" name="CircularStd-Book" family="Circular Std" pointSize="17"/>
+                    <rect key="frame" x="20" y="150" width="15" height="30.5"/>
+                    <fontDescription key="fontDescription" name="CircularStd-Bold" family="Circular Std" pointSize="24"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -57,7 +57,7 @@
                 <constraint firstItem="RBW-PJ-UVM" firstAttribute="leading" secondItem="BEw-Fg-KyF" secondAttribute="leading" id="Tfs-Id-ooX"/>
                 <constraint firstItem="BEw-Fg-KyF" firstAttribute="bottom" secondItem="Bq5-ku-HQ2" secondAttribute="bottom" constant="16" id="Xoh-iC-i7u"/>
                 <constraint firstItem="vk1-3c-KVn" firstAttribute="centerY" secondItem="EOf-2K-leI" secondAttribute="centerY" id="jRe-6G-YkR"/>
-                <constraint firstItem="vk1-3c-KVn" firstAttribute="leading" secondItem="EOf-2K-leI" secondAttribute="trailing" constant="12" id="nXf-Oc-bjD"/>
+                <constraint firstItem="vk1-3c-KVn" firstAttribute="leading" secondItem="EOf-2K-leI" secondAttribute="trailing" constant="8" id="nXf-Oc-bjD"/>
                 <constraint firstItem="Bq5-ku-HQ2" firstAttribute="top" secondItem="vk1-3c-KVn" secondAttribute="bottom" constant="8" id="oSw-jc-TPf"/>
                 <constraint firstItem="Bq5-ku-HQ2" firstAttribute="top" secondItem="vk1-3c-KVn" secondAttribute="bottom" constant="8" id="p5v-ol-Qlh"/>
                 <constraint firstItem="Bq5-ku-HQ2" firstAttribute="leading" secondItem="BEw-Fg-KyF" secondAttribute="leading" constant="20" id="pFX-vJ-ugY"/>

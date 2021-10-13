@@ -79,17 +79,26 @@ extension WalletViewController {
             
             if isSuccess {
                 
-                if (response as! [String:Any])["result"] as! Int == 1 {
+                if (response as! [String:Any])["result"] as! Int == 1,
+                   let data = (response as! [String:Any])["data"] as? [String:Any] {
+                    let quotation = Quotation(data)
                     let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier: "CreditRequestDetailsViewController") as! CreditRequestDetailsViewController
                     self.navigationController!.pushViewController(vc, animated: true)
                 }else {
                     let message = (response as! [String:Any])["msg"] as? String ?? ""
-                    AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
+                    self.gotBack(message)
                 }
             }else {
                 let message = (response as! [String:Any])["Error"] as? String ?? ""
                 AlertView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message)
             }
+        }
+    }
+    
+    func gotBack(_ message: String) {
+        AlertWithOkView.show(self, image: #imageLiteral(resourceName: "Alert for deny quotation"), message: message, actionTitle: "GO TO HOME")
+        AlertWithOkView.completion = { (action) in
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

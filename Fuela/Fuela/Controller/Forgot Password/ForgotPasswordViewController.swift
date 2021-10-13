@@ -41,8 +41,8 @@ extension ForgotPasswordViewController {
         
         if self.emailTextField.text!.isEmpty {
             errorMessage = "Please enter your email."
-        }else if !Validation.isValidEmail(self.emailTextField.text!){
-            errorMessage = "Please enter valid email."
+//        }else if !Validation.isValidEmail(self.emailTextField.text!){
+//            errorMessage = "Please enter valid email."
         }else {
             return true
         }

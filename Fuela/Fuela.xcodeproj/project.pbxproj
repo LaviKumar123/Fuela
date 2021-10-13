@@ -11,6 +11,7 @@
 		1851523326B9648600C5C7F2 /* FuelStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851523226B9648600C5C7F2 /* FuelStation.swift */; };
 		18B78D5826B7BCD200367288 /* CardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B78D5726B7BCD200367288 /* CardDetailsViewController.swift */; };
 		18B78D5D26B8079F00367288 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B78D5C26B8079F00367288 /* Transaction.swift */; };
+		18BAA55926DDF24C006ED1AE /* NotificationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BAA55826DDF24C006ED1AE /* NotificationInfo.swift */; };
 		5B013B3324EEA11B008F2C25 /* AlertWithOkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B013B3224EEA11B008F2C25 /* AlertWithOkView.xib */; };
 		5B013B3524EEA16B008F2C25 /* AlertWithOkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B013B3424EEA16B008F2C25 /* AlertWithOkView.swift */; };
 		5B0F861124E14B7F00195951 /* Terms&ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F861024E14B7F00195951 /* Terms&ConditionsViewController.swift */; };
@@ -132,6 +133,7 @@
 		5BE157F624DBF2FD00F1F678 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE157F524DBF2FD00F1F678 /* ForgotPasswordViewController.swift */; };
 		5BE157FA24DBF31D00F1F678 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE157F924DBF31D00F1F678 /* SignUpViewController.swift */; };
 		5BE3220624EE7E10008725A9 /* Quotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3220524EE7E10008725A9 /* Quotation.swift */; };
+		927EEBA5270C2CA800A81CE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 927EEBA4270C2CA800A81CE1 /* GoogleService-Info.plist */; };
 		AB472583C8C81741D24C8763 /* Pods_Fuela.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8219583EC3A2CBFE19CF1C63 /* Pods_Fuela.framework */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +144,7 @@
 		1885E890262DA76C0011AB9D /* Fuela-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fuela-Bridging-Header.h"; sourceTree = "<group>"; };
 		18B78D5726B7BCD200367288 /* CardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsViewController.swift; sourceTree = "<group>"; };
 		18B78D5C26B8079F00367288 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		18BAA55826DDF24C006ED1AE /* NotificationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInfo.swift; sourceTree = "<group>"; };
 		5B013B3224EEA11B008F2C25 /* AlertWithOkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertWithOkView.xib; sourceTree = "<group>"; };
 		5B013B3424EEA16B008F2C25 /* AlertWithOkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWithOkView.swift; sourceTree = "<group>"; };
 		5B0F861024E14B7F00195951 /* Terms&ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Terms&ConditionsViewController.swift"; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 		5BE3220524EE7E10008725A9 /* Quotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotation.swift; sourceTree = "<group>"; };
 		8219583EC3A2CBFE19CF1C63 /* Pods_Fuela.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fuela.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		880A9E14541AEA5BD9FAF808 /* Pods-Fuela.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fuela.debug.xcconfig"; path = "Target Support Files/Pods-Fuela/Pods-Fuela.debug.xcconfig"; sourceTree = "<group>"; };
+		9230E46D26DF2CBA0026B862 /* Fuela.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fuela.entitlements; sourceTree = "<group>"; };
+		927EEBA4270C2CA800A81CE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +325,14 @@
 				18B78D5C26B8079F00367288 /* Transaction.swift */,
 			);
 			path = Transactions;
+			sourceTree = "<group>";
+		};
+		18BAA55726DDF216006ED1AE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				18BAA55826DDF24C006ED1AE /* NotificationInfo.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		4BFC135D3F340D3C6F88453F /* Frameworks */ = {
@@ -384,6 +397,7 @@
 		5B1D0F3924E5093F0010B9D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18BAA55726DDF216006ED1AE /* Notification */,
 				1844968126DCE8240029DAA6 /* Rewards */,
 				1851523126B9645D00C5C7F2 /* Fuel Station */,
 				18B78D5B26B8076400367288 /* Transactions */,
@@ -614,12 +628,14 @@
 		5B9E4A8B24DBDBBA00990F59 /* Fuela */ = {
 			isa = PBXGroup;
 			children = (
+				9230E46D26DF2CBA0026B862 /* Fuela.entitlements */,
 				5B1D0F3924E5093F0010B9D6 /* Model */,
 				5B9E4AA324DBDC0D00990F59 /* View */,
 				5B9E4AA124DBDBE600990F59 /* Controller */,
 				5B9E4AA024DBDBC200990F59 /* Delegate */,
 				5B9E4AA624DBDC5B00990F59 /* Utilities */,
 				5B9E4A9524DBDBBB00990F59 /* Assets.xcassets */,
+				927EEBA4270C2CA800A81CE1 /* GoogleService-Info.plist */,
 				5B9E4A9A24DBDBBB00990F59 /* Info.plist */,
 			);
 			path = Fuela;
@@ -1172,6 +1188,7 @@
 				5B47BE9224DBE43900F3C9BC /* Circular Std Medium.ttf in Resources */,
 				5B9E4AE124DBDC5B00990F59 /* Infosky.plist in Resources */,
 				5B9E4B0324DBDC5B00990F59 /* countries.json in Resources */,
+				927EEBA5270C2CA800A81CE1 /* GoogleService-Info.plist in Resources */,
 				5B24462A24E2A0A600CB8915 /* PaidSuccessView.xib in Resources */,
 				5BA8BF5224DD64020027E601 /* AccountTableViewCell.xib in Resources */,
 				5B45666024E3BC63004BF7CB /* AccountHeaderView.xib in Resources */,
@@ -1319,6 +1336,7 @@
 				5B6F6C5A24DC134800D2C48F /* WorkDetailsViewController.swift in Sources */,
 				18B78D5826B7BCD200367288 /* CardDetailsViewController.swift in Sources */,
 				5BE157F424DBF2EF00F1F678 /* BankingDetailsViewController.swift in Sources */,
+				18BAA55926DDF24C006ED1AE /* NotificationInfo.swift in Sources */,
 				5B6F6C5D24DC169F00D2C48F /* IncomeDetailsViewController.swift in Sources */,
 				5B9E4B0624DBDC5B00990F59 /* Validation.swift in Sources */,
 				5BC514DD24E11D1900A36CB6 /* CreditRequestDetailsViewController.swift in Sources */,
@@ -1499,19 +1517,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DZY2G9354J;
+				CODE_SIGN_ENTITLEMENTS = Fuela/Fuela.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.1;
+				DEVELOPMENT_TEAM = DYMXDGM2S9;
 				INFOPLIST_FILE = Fuela/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.designoweb.Fuela;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fuela.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Fuela/Utilities/Bridzing Header/Fuela-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: *";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/apple/Desktop/Fuela/Fuela/Fuela/Fuela/Utilities/Bridzing Header/Fuela-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1524,19 +1544,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DZY2G9354J;
+				CODE_SIGN_ENTITLEMENTS = Fuela/Fuela.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.1;
+				DEVELOPMENT_TEAM = DYMXDGM2S9;
 				INFOPLIST_FILE = Fuela/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.designoweb.Fuela;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fuela.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Fuela/Utilities/Bridzing Header/Fuela-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: *";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/apple/Desktop/Fuela/Fuela/Fuela/Fuela/Utilities/Bridzing Header/Fuela-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

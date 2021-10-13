@@ -17,7 +17,7 @@ class RewardHeaderView: GSKStretchyHeaderView {
     
     var reward: Reward! {
         didSet {
-            self.currencyLabel.text = reward.currency
+            self.currencyLabel.text     = reward.currency
             self.rewardAmountLabel.text = reward.reward_amt
         }
     }

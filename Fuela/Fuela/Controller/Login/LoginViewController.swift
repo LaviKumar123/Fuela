@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     
     var currentValue          : String?
     private var activeElement : String?
-
+    
     //MARK:- Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
     
     func getRegionCode(){
         let locale = Locale.current
-//        print(locale.regionCode)
+        //        print(locale.regionCode)
     }
     
     //MARK:- Button Action
@@ -55,8 +55,8 @@ class LoginViewController: UIViewController {
         
         if self.emailTextField.text!.isEmpty {
             errorMessage = "Please enter your email."
-        }else if !Validation.isValidEmail(self.emailTextField.text!){
-            errorMessage = "Please enter valid email."
+//        }else if !Validation.isValidEmail(self.emailTextField.text!){
+//            errorMessage = "Please enter valid email."
         }else if self.passwordTextField.text!.isEmpty {
             errorMessage = "Please enter password."
         }else if !Validation.isPwdLength(password: self.passwordTextField.text!)  {
@@ -143,7 +143,7 @@ extension LoginViewController {
             
             if appUser.isUserAccepted == "accepted" {
                 let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier:  "TabBarViewController") as! TabBarViewController
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.setViewControllers([vc], animated: true)
             }else {
                 let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier: "AccountVerificationViewController") as! AccountVerificationViewController
                 self.navigationController!.pushViewController(vc, animated: true)

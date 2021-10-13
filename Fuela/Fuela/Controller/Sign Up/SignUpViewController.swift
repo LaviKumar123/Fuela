@@ -26,7 +26,6 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField     : UITextField!
     @IBOutlet weak var confPasswordTextField : UITextField!
     @IBOutlet weak var userImageView         : UIImageView!
-    @IBOutlet weak var cameraButton          : UIButton!
     @IBOutlet weak var countryCodeLabel      : UILabel!
     @IBOutlet weak var countryFlagImageView  : UIImageView!
     
@@ -48,9 +47,9 @@ class SignUpViewController: UIViewController {
         //        self.requestToCompuscamRegister("242534", surname: "LKM", address: "dfs di dfvidfv")
         
         let datePickerView:UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePicker.Mode.date
-        datePickerView.maximumDate = Date()
-        self.dobTextField.inputView = datePickerView
+        datePickerView.datePickerMode   = UIDatePicker.Mode.date
+        datePickerView.maximumDate      = Date()
+        self.dobTextField.inputView     = datePickerView
         datePickerView.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
         
         self.countryFlagImageView.image = CountryManager.shared.country(withDigitCode: "+27")?.flag
@@ -87,14 +86,14 @@ class SignUpViewController: UIViewController {
     
     @IBAction func countryCodeButtonTapped(_ sender: UIButton) {
         
-        let countryController = CountryPickerController.presentController(on: self) { (country) in
-            self.countryCode = country.dialingCode!
-            self.countryCodeLabel.text  = self.countryCode
-            let flag = country.flag
-            self.countryFlagImageView.image = flag
-        }
-        
-        countryController.detailColor = UIColor.red
+//        let countryController = CountryPickerController.presentController(on: self) { (country) in
+//            self.countryCode = country.dialingCode!
+//            self.countryCodeLabel.text  = self.countryCode
+//            let flag = country.flag
+//            self.countryFlagImageView.image = flag
+//        }
+//
+//        countryController.detailColor = UIColor.red
     }
     
     @IBAction func genderButtonTapped(_ sender: UIButton) {
@@ -148,7 +147,7 @@ extension SignUpViewController: UITextFieldDelegate {
             itemFont            : UIFont.systemFont(ofSize: 20)
         )
         
-        let idTypes = ["Identity Document","Passport"/*"Aadhaar", "Pan Card", "Driving Licence"*/]
+        let idTypes = ["Smart Id Card","Passport"/*"Aadhaar", "Pan Card", "Driving Licence"*/]
         
         let picker = YBTextPicker.init(with: idTypes , appearance: redAppearance,
                                        onCompletion: { (selectedIndexes, selectedValues) in
@@ -192,14 +191,14 @@ extension SignUpViewController: UITextFieldDelegate {
             itemFont            : UIFont.systemFont(ofSize: 20)
         )
         
-        let idTypes = ["Male", "Female"]
+        let idTypes = ["Male", "Female", "Other"]
         
         let picker = YBTextPicker.init(with: idTypes , appearance: redAppearance,
                                        onCompletion: { (selectedIndexes, selectedValues) in
                                         if let selectedValue = selectedValues.first{
                                             sender.text = selectedValue
                                             sender.resignFirstResponder()
-                                            self.selectedGender = (selectedValue == "Male") ? "M" : "F"
+                                            self.selectedGender = (selectedValue == "Male") ? "M" : (selectedValue == "Female") ? "F" : "O"
                                         }else{
                                         }
                                        },
@@ -211,7 +210,7 @@ extension SignUpViewController: UITextFieldDelegate {
         picker.preSelectedValues = (self.selectedGender == "M") ? ["Male"] : ["Female"]
         picker.leftPadding  = 20
         picker.rightPadding = 20
-        picker.height       = 200
+        picker.height       = 250
         picker.preSelectedValues = [sender.text!]
         picker.setupLayout()
         picker.show(withAnimation: .FromBottom)
@@ -242,29 +241,31 @@ extension SignUpViewController {
         
         if self.fullNameTextField.text!.isEmpty {
             errorMessage = "Please enter first name."
-        }else if !Validation.isValidName(name: self.fullNameTextField.text!){
-            errorMessage = "Please enter valid first name."
+//        }else if !Validation.isValidName(name: self.fullNameTextField.text!){
+//            errorMessage = "Please enter valid first name."
         }else if self.surnameTextField.text!.isEmpty {
-            errorMessage = "Please enter surname."
-        }else if !Validation.isValidName(name: self.surnameTextField.text!){
-            errorMessage = "Please enter valid surname."
+            errorMessage = "Please enter last name."
+//        }else if !Validation.isValidName(name: self.surnameTextField.text!){
+//            errorMessage = "Please enter valid last name."
         }else if self.emailTextField.text!.isEmpty {
             errorMessage = "Please enter your email."
-        }else if !Validation.isValidEmail(self.emailTextField.text!){
-            errorMessage = "Please enter valid email."
+//        }else if !Validation.isValidEmail(self.emailTextField.text!){
+//            errorMessage = "Please enter valid email."
         }else  if self.genderTextField.text!.isEmpty {
             errorMessage = "Please select your gender."
         }else  if self.dobTextField.text!.isEmpty {
             errorMessage = "Please enter your date of birth."
         }else  if self.phoneTextField.text!.isEmpty {
-            errorMessage = "Please enter phone number."
-        }else if (self.phoneTextField.text!.length < 10)
-                    || (self.phoneTextField.text!.length > 15){
-            errorMessage = "Phone number length should be between 10 to 15 digits."
+            errorMessage = "Please enter contact number."
+        }else if (self.phoneTextField.text!.length < 9)
+                    || (self.phoneTextField.text!.length > 9){
+            errorMessage = "Contact number length should be 9 digits."
         }else  if self.idTypeTextField.text!.isEmpty {
             errorMessage = "Please enter id type."
         }else  if self.idNumberTextField.text!.isEmpty {
             errorMessage = "Please enter id number."
+        }else  if self.idNumberTextField.text!.length != 13 {
+            errorMessage = "Id number length should be 13 digits."
         }else  if self.addressTextField.text!.isEmpty {
             errorMessage = "Please enter address."
 //        }else  if self.address2TextField.text!.isEmpty {

@@ -38,8 +38,9 @@ class PersonalDetailsViewController: UIViewController {
         
         
         let datePickerView:UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePicker.Mode.date
-        self.dobTextField.inputView = datePickerView
+        datePickerView.datePickerMode   = UIDatePicker.Mode.date
+        datePickerView.maximumDate      = Date()
+        self.dobTextField.inputView     = datePickerView
         datePickerView.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
         
         self.dataSetup()
@@ -48,12 +49,14 @@ class PersonalDetailsViewController: UIViewController {
     func dataSetup() {
         guard let appUser = AppUser.shared else { return }
         
+        let gender = (appUser.gender! == "M") ? "Male" : (appUser.gender! == "O") ? "Other": "Female"
+        
         self.fullNameTextField.text = appUser.fullName!
         self.emailTextField.text    = appUser.email!
         self.phoneTextField.text    = appUser.phone!
         self.surNameTextField.text  = appUser.surname!
         self.selectedGender         = appUser.gender!
-        self.genderTextField.text   = (appUser.gender! == "M") ? "Male" : "Female"
+        self.genderTextField.text   = gender
         self.dobTextField.text      = appUser.dob!
         self.idTypeTextField.text   = appUser.idType!
         self.idNumberTextField.text = appUser.idNumber!
@@ -72,14 +75,14 @@ class PersonalDetailsViewController: UIViewController {
     
     @IBAction func countryCodeButtonTapped(_ sender: UIButton) {
         
-        let countryController = CountryPickerController.presentController(on: self) { (country) in
-            self.countryCode = country.dialingCode!
-            self.countryCodeLabel.text  = self.countryCode
-            let flag = country.flag
-            self.countryFlagImageView.image = flag
-        }
-        
-        countryController.detailColor = UIColor.red
+//        let countryController = CountryPickerController.presentController(on: self) { (country) in
+//            self.countryCode = country.dialingCode!
+//            self.countryCodeLabel.text  = self.countryCode
+//            let flag = country.flag
+//            self.countryFlagImageView.image = flag
+//        }
+//        
+//        countryController.detailColor = UIColor.red
     }
     
     @IBAction func updateButtonTapped(_ sender: UIButton) {
@@ -147,7 +150,7 @@ extension PersonalDetailsViewController: UITextFieldDelegate {
             itemFont            : UIFont.systemFont(ofSize: 20)
         )
         
-        let idTypes = ["Identity Document","Passport"/*"Aadhaar", "Pan Card", "Driving Licence"*/]
+        let idTypes = ["Smart Id Card","Passport"/*"Aadhaar", "Pan Card", "Driving Licence"*/]
         
         let picker = YBTextPicker.init(with: idTypes , appearance: redAppearance,
                                        onCompletion: { (selectedIndexes, selectedValues) in
@@ -191,13 +194,13 @@ extension PersonalDetailsViewController: UITextFieldDelegate {
             itemFont            : UIFont.systemFont(ofSize: 20)
         )
         
-        let idTypes = ["Male", "Female"]
+        let idTypes = ["Male", "Female", "Other"]
         
         let picker = YBTextPicker.init(with: idTypes , appearance: redAppearance,
                                        onCompletion: { (selectedIndexes, selectedValues) in
                                         if let selectedValue = selectedValues.first{
                                             sender.text = selectedValue
-                                            self.selectedGender = (selectedValue == "Male") ? "M" : "F"
+                                            self.selectedGender = (selectedValue == "Male") ? "M" : (selectedValue == "Female") ? "F" : "O"
                                             sender.resignFirstResponder()
                                         }else{
                                         }
@@ -209,7 +212,7 @@ extension PersonalDetailsViewController: UITextFieldDelegate {
         
         picker.leftPadding = 20
         picker.rightPadding = 20
-        picker.height = 200
+        picker.height = 250
         picker.preSelectedValues = [sender.text!]
         picker.setupLayout()
         picker.show(withAnimation: .FromBottom)
@@ -225,25 +228,25 @@ extension PersonalDetailsViewController {
         var errorMessage = ""
         
         if self.fullNameTextField.text!.isEmpty {
-            errorMessage = "Please enter full name."
-        }else if !Validation.isValidName(name: self.fullNameTextField.text!){
-            errorMessage = "Please enter valid full name."
+            errorMessage = "Please enter first name."
+//        }else if !Validation.isValidName(name: self.fullNameTextField.text!){
+//            errorMessage = "Please enter valid full name."
         }else if self.surNameTextField.text!.isEmpty {
-            errorMessage = "Please enter surname."
-        }else if !Validation.isValidName(name: self.surNameTextField.text!){
-            errorMessage = "Please enter valid surname."
+            errorMessage = "Please enter last name."
+//        }else if !Validation.isValidName(name: self.surNameTextField.text!){
+//            errorMessage = "Please enter valid last name."
         }else if self.emailTextField.text!.isEmpty {
             errorMessage = "Please enter your email."
-        }else if !Validation.isValidEmail(self.emailTextField.text!){
-            errorMessage = "Please enter valid email."
+//        }else if !Validation.isValidEmail(self.emailTextField.text!){
+//            errorMessage = "Please enter valid email."
         }else  if self.genderTextField.text!.isEmpty {
             errorMessage = "Please select your gender."
         }else  if self.dobTextField.text!.isEmpty {
             errorMessage = "Please enter your date of birth."
         }else  if self.phoneTextField.text!.isEmpty {
-            errorMessage = "Please enter phone number."
-        }else if (self.phoneTextField.text!.length < 10) || (self.phoneTextField.text!.length > 15){
-            errorMessage = "Phone number length should be between 10 to 15 digits."
+            errorMessage = "Please enter contact number."
+        }else if (self.phoneTextField.text!.length < 9) || (self.phoneTextField.text!.length > 9){
+            errorMessage = "Contact number length should be 9 digits."
         }else  if self.idTypeTextField.text!.isEmpty {
             errorMessage = "Please enter id type."
         }else  if self.idNumberTextField.text!.isEmpty {

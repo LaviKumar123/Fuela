@@ -15,16 +15,19 @@ class AlertWithOkView: UIView {
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var button: UIButton!
     
     static var containerView: AlertWithOkView!
     
-    static var completion: ((String)->())!
+    static var completion: ((String)->())?
     
-    class func show(_ owner: UIViewController,image: UIImage, message: String) {
+    class func show(_ owner: UIViewController,image: UIImage, message: String, actionTitle: String) {
         
         AlertWithOkView.containerView =  UINib(nibName: "\(self)", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! AlertWithOkView
         
         AlertWithOkView.containerView.frame = owner.view.frame
+        
+        AlertWithOkView.containerView.button.setTitle("  \(actionTitle)  ", for: .normal)
         
         owner.view.addSubview(AlertWithOkView.containerView)
         
@@ -52,7 +55,9 @@ class AlertWithOkView: UIView {
             AlertWithOkView.containerView.contentView.frame.origin.y = AlertWithOkView.containerView.frame.size.height + AlertWithOkView.containerView.contentView.frame.size.height
             
         }) { _ in
-            AlertWithOkView.completion("Ok")
+            if AlertWithOkView.completion != nil {
+                AlertWithOkView.completion!("OK")
+            }
             AlertWithOkView.containerView.removeFromSuperview()
         }
     }

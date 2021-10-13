@@ -30,12 +30,12 @@ class AccountVerificationViewController: UIViewController {
 //        self.navigationController!.pushViewController(vc, animated: true)
         if self.isFromRegistration {
             let vc = MAIN_STORYBOARD.instantiateViewController(withIdentifier:  "LoginViewController") as! LoginViewController
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.setViewControllers([vc], animated: true)
         }else if self.isFromHome {
             self.navigationController?.popViewController(animated: false)
         }else {
             let vc = HOME_STORYBOARD.instantiateViewController(withIdentifier:  "TabBarViewController") as! TabBarViewController
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.setViewControllers([vc], animated: true)
         }
     }
 }
